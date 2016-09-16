@@ -1,1 +1,6 @@
-# tcc
+# Titulo tcc: 
+
+# Equipe:
+Nilsu
+Matheus
+Douglas
