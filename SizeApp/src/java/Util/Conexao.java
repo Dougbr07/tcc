@@ -11,20 +11,15 @@ import java.sql.SQLException;
 public class Conexao {
 
     private static Connection connection = null;
-    private static String url;
-    private static String usuario;
-    private static String senha;
+    private static final String url = "postgres://wrbzffsg:QchHZSJV2fUJostXRr3yxCV-xLAvhucK@elmer.db.elephantsql.com:5432/wrbzffsg";
+    private static final String usuario = "wrbzffsg";
+    private static final String senha = "QchHZSJV2fUJostXRr3yxCV-xLAvhucK";
 
-    public Conexao() {
-        //url = "jdbc:postgresql://localhost:5432/sizeapp";
-        //usuario = "postgres";
-        //senha = "postgres";
-        url = "postgres://wrbzffsg:QchHZSJV2fUJostXRr3yxCV-xLAvhucK@elmer.db.elephantsql.com:5432/wrbzffsg";
-        usuario = "wrbzffsg";
-        senha = "QchHZSJV2fUJostXRr3yxCV-xLAvhucK";
+    private Conexao(Conexao obj) {
+        obj.getConnection();
     }
 
-    private Connection getConnection() {
+    public static Connection getConnection() {
         try {
             if (connection == null || connection.isClosed()) {
                 Class.forName("org.postgresql.Driver");
@@ -42,7 +37,7 @@ public class Conexao {
     }
 
     public static void closeConnection() throws SQLException {
-        if (connection instanceof Connection) {
+        if (connection != null && !connection.isClosed()) {
             connection.close();
         }
     }
