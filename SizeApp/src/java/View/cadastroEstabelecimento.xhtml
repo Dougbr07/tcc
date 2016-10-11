@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:head>
+        <title>Cadastro de Estabelecimento</title>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label>Nome do Estabelecimento</label>
+                    <input class="form-control" type="text" jsf:value="#{EstabelecimentoModel.nome}" name="nome" placeholder="Ex. Clínica Vida" required="required" />
+                </div>
+                <div class="form-group col-sm-3">
+                    <label>Foto</label>
+                    <input class="form-control" jsf:value="#{EstabelecimentoModel.foto}" type="file" name="foto" required="false" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label>Endereço</label>
+                    <input class="form-control" jsf:value="#{EstabelecimentoModel.endereco}" name="endereco" placeholder="Ex. Avenida Fernandes Lima, 100." required="required" />
+                    <div id="map"></div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label>Horário de Funcionamento</label>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-2">Dom</label>
+                            <div class="col-sm-3">
+                                <h:inputText class="form-control" placeholder="Abertura" name="aberturaDom"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <h:inputText class="form-control" placeholder="Fechamento" name="fechamentoDom"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-2">Seg</label>
+                            <div class="col-sm-3">
+                                <h:inputText class="form-control" placeholder="Abertura" name="aberturaSeg"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <h:inputText class="form-control" placeholder="Fechamento" name="fechamentoSeg"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-2">Ter</label>
+                            <div class="col-sm-3">
+                                <h:inputText class="form-control" placeholder="Abertura" name="aberturaTer"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <h:inputText class="form-control" placeholder="Fechamento" name="fechamentoTer"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-2">Qua</label>
+                            <div class="col-sm-3">
+                                <h:inputText class="form-control" placeholder="Abertura" name="aberturaQua"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <h:inputText class="form-control" placeholder="Fechamento" name="fechamentoQua"/>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-2">Qui</label>
+                            <div class="col-sm-3">
+                                <h:inputText class="form-control" placeholder="Abertura" name="aberturaQui"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <h:inputText class="form-control" placeholder="Fechamento" name="fechamentoQui"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-2">Sex</label>
+                            <div class="col-sm-3">
+                                <h:inputText class="form-control" placeholder="Abertura" name="aberturaSex"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <h:inputText class="form-control" placeholder="Fechamento" name="fechamentoSex"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-2">Sab</label>
+                            <div class="col-sm-3">
+                                <h:inputText class="form-control" placeholder="Abertura" name="aberturaSab"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <h:inputText class="form-control" placeholder="Fechamento" name="fechamentoSab"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h:commandButton class="btn btn-primary btn-lg" type="submit" value="Cadastrar" />
+            <h:inputText class="btn btn-default" type="reset" value="Limpar" />
+        </div>
+    </h:body>
+</html>
