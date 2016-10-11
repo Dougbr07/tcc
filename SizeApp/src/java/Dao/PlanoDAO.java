@@ -5,6 +5,7 @@
  */
 package Dao;
 
+import Model.PlanoModel;
 import Model.UsuarioModel;
 import Util.Conexao;
 import java.sql.Connection;
@@ -19,28 +20,24 @@ import java.util.logging.Logger;
  *
  * @author Nilson França
  */
-public class UsuarioDAO {
-    
-    
+public class PlanoDAO {
+   
     private Connection connection;
 
-    public UsuarioDAO() {
+    public PlanoDAO() {
         connection = Conexao.getConnection();
     }
     
     
     
-    public boolean insert (UsuarioModel object) {
+    public boolean insert (PlanoModel object) {
     
       try{
            
-         String sql = "insert into usuario(nome,senha,foto,email) values(?,?,?,?)";
+         String sql = "insert into plano(nome) values(?)";
          
          PreparedStatement prep = connection.prepareStatement(sql);
          prep.setString(1, object.getNome());
-         prep.setString(2, object.getSenha());
-         prep.setString(3, object.getFoto());
-         prep.setString(4, object.getEmail());
          prep.executeUpdate();
          return true;
 
@@ -57,13 +54,13 @@ public class UsuarioDAO {
     }
     
     
-     public boolean remove (UsuarioModel object) {
+     public boolean remove (PlanoModel object) {
      try{
 
        
-         String sql = "update estabelencimento set status = 0 where id = ?";
+         String sql = "update plano set status = 0 where id = ?";
          PreparedStatement prep = connection.prepareStatement(sql);
-         prep.setInt(1, object.getIdUsuario());
+         prep.setInt(1, object.getIdPlano());
          prep.executeUpdate();
          return true;
 
@@ -75,24 +72,23 @@ public class UsuarioDAO {
     }
     
      
-      public ArrayList<UsuarioModel> show() {
+      public ArrayList<PlanoModel> show() {
     
-        ArrayList<UsuarioModel> usuarios = new ArrayList<>();
+        ArrayList<PlanoModel> planos = new ArrayList<>();
 
             try{
 
-                String sql = "select * from usuario";
+                String sql = "select * from plano";
                 PreparedStatement prep = connection.prepareStatement(sql);
                 ResultSet rs = prep.executeQuery();
 
                 while(rs.next()){
 
-                    UsuarioModel usuario = new UsuarioModel();
-                    usuario.setNome(rs.getString("nome"));
-                    usuario.setEmail(rs.getString("email"));
-                    usuario.setFoto(rs.getString("foto"));
-                    usuario.setIdUsuario(rs.getInt("idusuario"));
-                    usuarios.add(usuario);
+                    PlanoModel plano = new PlanoModel();
+                    plano.setNome(rs.getString("nome"));
+                    plano.setIdPlano(rs.getInt("idplano"));
+                    plano.setStatus(rs.getInt("status"));
+                    planos.add(plano);
 
                 }
 
@@ -101,7 +97,8 @@ public class UsuarioDAO {
                 System.out.println("Erro" + ex);
             }
 
-        return usuarios;
+        return planos;
         
-        }        
+        }
+      
 }
