@@ -63,6 +63,24 @@ public class EstabelecimentoDAO {
             return false;
         }
     }
+    
+        public boolean remove (EstabelecimentoModel object){
+    
+         try{
+
+       
+         String sql = "update estabelencimento set status = 0 where id = ?";
+         PreparedStatement prep = connection.prepareStatement(sql);
+         prep.setInt(1, object.getIdEstabelecimento());
+         prep.executeUpdate();
+         return true;
+
+         }catch(SQLException e){
+                e.printStackTrace();
+                 System.out.println("Oops! Ocorreu um erro inesperado!");
+         }
+         return false;
+    }
 
     public HashMap<Integer, EstabelecimentoModel> show(EstabelecimentoModel object) throws SQLException {
         int index = 1;
