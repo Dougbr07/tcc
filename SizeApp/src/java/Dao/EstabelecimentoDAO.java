@@ -90,8 +90,27 @@ public class EstabelecimentoDAO {
             return estabelecimentoMap;
         }
 
-        if (object.getNome() != null) {
+        if (object.getNome() != null)  {
+            String SQL = "SELECT\n"
+                    + "  e.nome, e.foto, e.notaTotal\n"
+                    + "FROM\n"
+                    + "public.estabelecimento e\n"
+                    + "WHERE\n"
+                    + "status = 1 AND nome like '%?%'\n"
+                    + "ORDER by "
+                    + "  notaTotal DESC";
+            PreparedStatement stmt = connection.prepareStatement(SQL);
+            stmt.setString(1, object.getNome());            
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                estabelecimento.setNome(rs.getString("nome"));
+                estabelecimento.setFoto(rs.getString("foto"));
+                estabelecimento.setNotaTotal(rs.getDouble("notaTotal"));
+                estabelecimentoMap.put(index, estabelecimento);
+                index++;
 
+            }
+            return estabelecimentoMap;
         }
         return estabelecimentoMap;
     }
