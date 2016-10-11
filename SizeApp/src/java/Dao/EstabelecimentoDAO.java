@@ -51,7 +51,7 @@ public class EstabelecimentoDAO {
             }
             return estabelecimentoMap;
         }
-        if (object.getNome() != null) {
+        if (object.getNome() != null)  {
             String SQL = "SELECT\n"
                     + "  e.nome, e.foto, e.notaTotal\n"
                     + "FROM\n"
