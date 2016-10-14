@@ -5,10 +5,42 @@
  */
 package Controller;
 
+import Dao.UsuarioDAO;
+import Model.UsuarioModel;
+import java.util.List;
+
 /**
  *
  * @author Nilson França
  */
-public class UsuarioController {
+    public class UsuarioController {
     
+     private UsuarioDAO usuarioDAO;
+	
+	public UsuarioController() {
+		this.usuarioDAO = new UsuarioDAO();
+	}
+	
+	public boolean cadastrar(UsuarioDAO usuario) {
+		boolean resultado = false;
+		try {
+			resultado = this.usuarioDAO.insert(usuario);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultado;
+    
+    
+    
+    
+    
+    
+        }
+  
 }
+  
+           
+  
+   
+    
+

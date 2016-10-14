@@ -69,7 +69,7 @@ public class EstabelecimentoDAO {
          try{
 
        
-         String sql = "update estabelencimento set status = 0 where id = ?";
+         String sql = "UPDATe estabelencimento set status = 0 where id = ?";
          PreparedStatement prep = connection.prepareStatement(sql);
          prep.setInt(1, object.getIdEstabelecimento());
          prep.executeUpdate();
@@ -131,5 +131,9 @@ public class EstabelecimentoDAO {
             return estabelecimentoMap;
         }
         return estabelecimentoMap;
+    }
+
+    public boolean insert(EstabelecimentoDAO estabelecimento) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
