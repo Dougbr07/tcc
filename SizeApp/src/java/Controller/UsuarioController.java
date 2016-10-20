@@ -21,7 +21,7 @@ import java.util.List;
 		this.usuarioDAO = new UsuarioDAO();
 	}
 	
-	public boolean cadastrar(UsuarioDAO usuario) {
+	public boolean cadastrar(UsuarioModel usuario) {
 		boolean resultado = false;
 		try {
 			resultado = this.usuarioDAO.insert(usuario);

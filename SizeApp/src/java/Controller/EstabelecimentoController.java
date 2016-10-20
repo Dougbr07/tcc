@@ -6,33 +6,28 @@
 package Controller;
 
 import Dao.EstabelecimentoDAO;
+import Model.EstabelecimentoModel;
 
 /**
  *
  * @author Nilson França
  */
 public class EstabelecimentoController {
-    
-     private EstabelecimentoDAO estabelecimentoDAO;
-	
-	public EstabelecimentoController() {
-		this.estabelecimentoDAO = new EstabelecimentoDAO();
-	}
-	
-	public boolean cadastrar(EstabelecimentoDAO
-                estabelecimento) {
-		boolean resultado = false;
-		try {
-			resultado = this.estabelecimentoDAO.insert(estabelecimento);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return resultado;
-    
-    
-    
-    
-    
-    
-        }
+
+  private EstabelecimentoDAO estabelecimentoDAO;
+
+  public EstabelecimentoController() {
+    this.estabelecimentoDAO = new EstabelecimentoDAO();
+  }
+
+  public boolean cadastrar(EstabelecimentoModel object) {
+    boolean resultado = false;
+    try {
+      resultado = this.estabelecimentoDAO.insert(object);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return resultado;
+
+  }
 }
