@@ -8,12 +8,14 @@ package Controller;
 import Dao.EstabelecimentoDAO;
 import Model.EstabelecimentoModel;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author Nilson França
  */
 @ManagedBean(name = "EstabelecimentoController")
+@SessionScoped
 public class EstabelecimentoController {
 
   private final EstabelecimentoDAO estabelecimentoDAO;

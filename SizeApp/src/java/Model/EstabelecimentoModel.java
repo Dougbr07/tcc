@@ -13,32 +13,21 @@ public class EstabelecimentoModel {
     private String longitude;
     private String foto;
     private double notaTotal;
-    private Time domAbertura;
-    private Time domFechamento;
-    private Time segAbertura;
-    private Time segFechamento;
-    private Time terAbertura;
-    private Time terFechamento;
-    private Time quaAbertura;
-    private Time quaFechamento;
-    private Time quiAbertura;
-    private Time quiFechamento;
-    private Time sexAbertura;
-    private Time sexFechamento;
-    private Time sabAbertura;
+    private String domAbertura;
+    private String domFechamento;
+    private String segAbertura;
+    private String segFechamento;
+    private String terAbertura;
+    private String terFechamento;
+    private String quaAbertura;
+    private String quaFechamento;
+    private String quiAbertura;
+    private String quiFechamento;
+    private String sexAbertura;
+    private String sexFechamento;
+    private String sabAbertura;
+    private String sabFechamento;
 
-    public double getNotaTotal() {
-        return notaTotal;
-    }
-
-    public void setNotaTotal(double notaTotal) {
-        this.notaTotal = notaTotal;
-    }
-    
-    public EstabelecimentoModel(){
-        
-    }
-    
     public int getIdEstabelecimento() {
         return IdEstabelecimento;
     }
@@ -95,116 +84,129 @@ public class EstabelecimentoModel {
         this.foto = foto;
     }
 
-    public Time getDomAbertura() {
+    public double getNotaTotal() {
+        return notaTotal;
+    }
+
+    public void setNotaTotal(double notaTotal) {
+        this.notaTotal = notaTotal;
+    }
+
+    public String getDomAbertura() {
         return domAbertura;
     }
 
-    public void setDomAbertura(Time domAbertura) {
+    public void setDomAbertura(String domAbertura) {
         this.domAbertura = domAbertura;
     }
 
-    public Time getDomFechamento() {
+    public String getDomFechamento() {
         return domFechamento;
     }
 
-    public void setDomFechamento(Time domFechamento) {
+    public void setDomFechamento(String domFechamento) {
         this.domFechamento = domFechamento;
     }
 
-    public Time getSegAbertura() {
+    public String getSegAbertura() {
         return segAbertura;
     }
 
-    public void setSegAbertura(Time segAbertura) {
+    public void setSegAbertura(String segAbertura) {
         this.segAbertura = segAbertura;
     }
 
-    public Time getSegFechamento() {
+    public String getSegFechamento() {
         return segFechamento;
     }
 
-    public void setSegFechamento(Time segFechamento) {
+    public void setSegFechamento(String segFechamento) {
         this.segFechamento = segFechamento;
     }
 
-    public Time getTerAbertura() {
+    public String getTerAbertura() {
         return terAbertura;
     }
 
-    public void setTerAbertura(Time terAbertura) {
+    public void setTerAbertura(String terAbertura) {
         this.terAbertura = terAbertura;
     }
 
-    public Time getTerFechamento() {
+    public String getTerFechamento() {
         return terFechamento;
     }
 
-    public void setTerFechamento(Time terFechamento) {
+    public void setTerFechamento(String terFechamento) {
         this.terFechamento = terFechamento;
     }
 
-    public Time getQuaAbertura() {
+    public String getQuaAbertura() {
         return quaAbertura;
     }
 
-    public void setQuaAbertura(Time quaAbertura) {
+    public void setQuaAbertura(String quaAbertura) {
         this.quaAbertura = quaAbertura;
     }
 
-    public Time getQuaFechamento() {
+    public String getQuaFechamento() {
         return quaFechamento;
     }
 
-    public void setQuaFechamento(Time quaFechamento) {
+    public void setQuaFechamento(String quaFechamento) {
         this.quaFechamento = quaFechamento;
     }
 
-    public Time getQuiAbertura() {
+    public String getQuiAbertura() {
         return quiAbertura;
     }
 
-    public void setQuiAbertura(Time quiAbertura) {
+    public void setQuiAbertura(String quiAbertura) {
         this.quiAbertura = quiAbertura;
     }
 
-    public Time getQuiFechamento() {
+    public String getQuiFechamento() {
         return quiFechamento;
     }
 
-    public void setQuiFechamento(Time quiFechamento) {
+    public void setQuiFechamento(String quiFechamento) {
         this.quiFechamento = quiFechamento;
     }
 
-    public Time getSexAbertura() {
+    public String getSexAbertura() {
         return sexAbertura;
     }
 
-    public void setSexAbertura(Time sexAbertura) {
+    public void setSexAbertura(String sexAbertura) {
         this.sexAbertura = sexAbertura;
     }
 
-    public Time getSexFechamento() {
+    public String getSexFechamento() {
         return sexFechamento;
     }
 
-    public void setSexFechamento(Time sexFechamento) {
+    public void setSexFechamento(String sexFechamento) {
         this.sexFechamento = sexFechamento;
     }
 
-    public Time getSabAbertura() {
+    public String getSabAbertura() {
         return sabAbertura;
     }
 
-    public void setSabAbertura(Time sabAbertura) {
+    public void setSabAbertura(String sabAbertura) {
         this.sabAbertura = sabAbertura;
     }
 
-    public Time getSabFechamento() {
+    public String getSabFechamento() {
         return sabFechamento;
     }
 
-    public void setSabFechamento(Time sabFechamento) {
+    public void setSabFechamento(String sabFechamento) {
         this.sabFechamento = sabFechamento;
-    }
-    private Time sabFechamento;
+    }   
+    
+//    public static void main(String[] args) {
+//        EstabelecimentoModel ob = new EstabelecimentoModel();
+//        ob.setDomAbertura("08:30");
+//    }
+    
 }
