@@ -9,8 +9,8 @@ public class EstabelecimentoModel {
     private String nome;
     private int status;
     private String endereco;
-    private int latitude;
-    private int longitude;
+    private String latitude;
+    private String longitude;
     private String foto;
     private double notaTotal;
     private Time domAbertura;
@@ -71,19 +71,19 @@ public class EstabelecimentoModel {
         this.endereco = endereco;
     }
 
-    public int getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(int latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
-    public int getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(int longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 

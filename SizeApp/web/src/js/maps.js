@@ -19,6 +19,8 @@ function addMarker(location, map) {
     position: location,
     map: map
   });
+  document.getElementById("latitude").value = (marker.position.lat());
+  document.getElementById("longitude").value = (marker.position.lng());
 }
 var drawingManager = new google.maps.drawing.DrawingManager();
 drawingManager.setMap(map);
