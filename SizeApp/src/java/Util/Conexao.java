@@ -10,10 +10,15 @@ import java.sql.SQLException;
  */
 public class Conexao {
 
+//    private static Connection connection = null;
+//    private static final String url = "jdbc:postgresql://doug07.heliohost.org:5432/doug07_tcc";
+//    private static final String usuario = "doug07";
+//    private static final String senha = "DouG123456";
+    
     private static Connection connection = null;
-    private static final String url = "postgres://wrbzffsg:QchHZSJV2fUJostXRr3yxCV-xLAvhucK@elmer.db.elephantsql.com:5432/wrbzffsg";
-    private static final String usuario = "wrbzffsg";
-    private static final String senha = "QchHZSJV2fUJostXRr3yxCV-xLAvhucK";
+    private static final String url = "jdbc:postgresql://localhost/sizeapp";
+    private static final String usuario = "postgres";
+    private static final String senha = "postgres";
 
     private Conexao(Conexao obj) {
         obj.getConnection();
