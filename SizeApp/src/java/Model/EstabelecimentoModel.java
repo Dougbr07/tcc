@@ -1,5 +1,7 @@
 package Model;
-import java.sql.Time;
+
+import java.time.LocalTime;
+
 /**
  *
  * @author Matheus Montenegro
@@ -202,11 +204,6 @@ public class EstabelecimentoModel {
 
     public void setSabFechamento(String sabFechamento) {
         this.sabFechamento = sabFechamento;
-    }   
-    
-//    public static void main(String[] args) {
-//        EstabelecimentoModel ob = new EstabelecimentoModel();
-//        ob.setDomAbertura("08:30");
-//    }
-    
+    }
+
 }

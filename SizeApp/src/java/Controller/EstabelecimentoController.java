@@ -16,7 +16,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean(name = "EstabelecimentoController")
 @SessionScoped
-public class EstabelecimentoController {
+public class EstabelecimentoController{
 
   private final EstabelecimentoDAO estabelecimentoDAO;
   public EstabelecimentoModel estabelecimentoModel = new EstabelecimentoModel();
@@ -33,7 +33,7 @@ public class EstabelecimentoController {
     this.estabelecimentoModel = estabelecimentoModel;
   }
 
-  public boolean cadastrar(EstabelecimentoModel object) {
+  public boolean cadastrar() {
     boolean resultado = false;
     try {
       resultado = this.estabelecimentoDAO.insert(estabelecimentoModel);
