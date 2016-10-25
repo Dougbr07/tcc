@@ -2,12 +2,13 @@ package Dao;
 
 import Model.EstabelecimentoModel;
 import Util.Conexao;
+import Util.FileUploadMBean;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import javafx.geometry.Point2D;
 
 /**
  *
@@ -21,7 +22,7 @@ public class EstabelecimentoDAO {
         connection = Conexao.getConnection();
     }
 
-    public boolean insert(EstabelecimentoModel object) throws SQLException {
+    public boolean insert(EstabelecimentoModel object) throws SQLException, IOException {
         String SQL;
         SQL = "INSERT INTO public.estabelecimento\n"
                 + "(\n"
@@ -65,6 +66,11 @@ public class EstabelecimentoDAO {
         stmt.setString(15, object.getQuiFechamento());
         stmt.setString(16, object.getSexFechamento());
         stmt.setString(17, object.getSabFechamento());
+        
+        // upload de foto
+        FileUploadMBean upload = new FileUploadMBean();
+        upload.uploadFile(object.getFile1(), "estabelecimento");
+
         if (stmt.executeUpdate() > 0) {
             System.out.println("Cadastrou com sucesso!");
             return true;
@@ -72,6 +78,9 @@ public class EstabelecimentoDAO {
             System.out.println("Faiô... :'(");
             return false;
         }
+        
+        
+        
     }
     public boolean remove(EstabelecimentoModel object) {
 

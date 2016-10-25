@@ -1,6 +1,7 @@
 package Model;
 
 import java.time.LocalTime;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -29,6 +30,16 @@ public class EstabelecimentoModel {
     private String sexFechamento;
     private String sabAbertura;
     private String sabFechamento;
+    private Part file1;
+    
+    public Part getFile1() {
+        return file1;
+    }
+
+    public void setFile1(Part file1) {
+        this.file1 = file1;
+    }
+   
 
     public int getIdEstabelecimento() {
         return IdEstabelecimento;
