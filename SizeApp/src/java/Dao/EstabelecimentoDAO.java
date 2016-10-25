@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import javafx.geometry.Point2D;
 
 /**
  *
@@ -24,11 +25,11 @@ public class EstabelecimentoDAO {
         String SQL;
         SQL = "INSERT INTO public.estabelecimento\n"
                 + "(\n"
-                + "	nome, foto, endereco, latitude, longitude\n"
+                + "	nome, foto, endereco, coordenada\n"
                 + ")\n"
                 + "VALUES\n"
                 + "(\n"
-                + "	?,?,?,?,?\n"
+                + "	?,?,?, point("+Float.valueOf(object.getLatitude())+","+Float.valueOf(object.getLongitude())+")\n"
                 + ");\n"
                 + "INSERT INTO public.horario_abertura \n"
                 + "(\n"
@@ -50,22 +51,20 @@ public class EstabelecimentoDAO {
         stmt.setString(1, object.getNome());
         stmt.setString(2, null);//object.getFoto());
         stmt.setString(3, object.getEndereco());
-        stmt.setFloat(4, Float.parseFloat(object.getLatitude()));
-        stmt.setFloat(5, Float.parseFloat(object.getLongitude()));
-        stmt.setString(6, object.getDomAbertura());
-        stmt.setString(7, object.getSegAbertura());
-        stmt.setString(8, object.getTerAbertura());
-        stmt.setString(9, object.getQuaAbertura());
-        stmt.setString(10, object.getQuiAbertura());
-        stmt.setString(11, object.getSexAbertura());
-        stmt.setString(12, object.getSabAbertura());
-        stmt.setString(13, object.getDomFechamento());
-        stmt.setString(14, object.getSegFechamento());
-        stmt.setString(15, object.getTerFechamento());
-        stmt.setString(16, object.getQuaFechamento());
-        stmt.setString(17, object.getQuiFechamento());
-        stmt.setString(18, object.getSexFechamento());
-        stmt.setString(19, object.getSabFechamento());
+        stmt.setString(4, object.getDomAbertura());
+        stmt.setString(5, object.getSegAbertura());
+        stmt.setString(6, object.getTerAbertura());
+        stmt.setString(7, object.getQuaAbertura());
+        stmt.setString(8, object.getQuiAbertura());
+        stmt.setString(9, object.getSexAbertura());
+        stmt.setString(10, object.getSabAbertura());
+        stmt.setString(11, object.getDomFechamento());
+        stmt.setString(12, object.getSegFechamento());
+        stmt.setString(13, object.getTerFechamento());
+        stmt.setString(14, object.getQuaFechamento());
+        stmt.setString(15, object.getQuiFechamento());
+        stmt.setString(16, object.getSexFechamento());
+        stmt.setString(17, object.getSabFechamento());
         if (stmt.executeUpdate() > 0) {
             System.out.println("Cadastrou com sucesso!");
             return true;
@@ -74,7 +73,6 @@ public class EstabelecimentoDAO {
             return false;
         }
     }
-
     public boolean remove(EstabelecimentoModel object) {
 
         try {
