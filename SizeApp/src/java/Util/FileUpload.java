@@ -19,13 +19,13 @@ import javax.servlet.http.Part;
 
 @ManagedBean
 @ViewScoped
-public class FileUploadMBean implements Serializable {
+public class FileUpload implements Serializable {
 
     private static final long serialVersionUID = 1L;
     public static final int BUFFER_SIZE = 1024;
 
 
-    public String uploadFile(Part file1, String tipo) throws IOException {
+    public String uploadFile(Part file1, String tipo, String nomeImagem) throws IOException {
         File outputFile = null;
         InputStream inputStream = null;
         OutputStream outputStream = null;
@@ -35,15 +35,15 @@ public class FileUploadMBean implements Serializable {
         String path = servletContext.getRealPath("");
         
         if (file1.getSize() > 0) {
-            String fileName = getFileNameFromPart(file1);
+            // String fileName = getFileNameFromPart(file1);
           
             // destino do arquivo
             if(tipo.equals("estabelecimento")){
-            outputFile = new File(path + File.separator + "WEB-INF\\imagens\\estabelecimento"
-                    + File.separator + fileName);
+            outputFile = new File(path + File.separator + "WEB-INF"+File.separator+"imagens"+ File.separator + "estabelecimento"
+                    + File.separator + nomeImagem);
             }else{
-            outputFile = new File(path + File.separator + "WEB-INF\\imagens\\estabelecimento"
-                    + File.separator + fileName);
+            outputFile = new File(path + File.separator + "WEB-INF"+File.separator+"imagens"+ File.separator + "usuario"
+                    + File.separator + nomeImagem);
             }
             
             inputStream = file1.getInputStream();

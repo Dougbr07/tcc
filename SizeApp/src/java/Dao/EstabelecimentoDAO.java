@@ -2,13 +2,14 @@ package Dao;
 
 import Model.EstabelecimentoModel;
 import Util.Conexao;
-import Util.FileUploadMBean;
+import Util.FileUpload;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -21,16 +22,21 @@ public class EstabelecimentoDAO {
     public EstabelecimentoDAO() {
         connection = Conexao.getConnection();
     }
+    
+ 
 
     public boolean insert(EstabelecimentoModel object) throws SQLException, IOException {
         String SQL;
+        
+
         SQL = "INSERT INTO public.estabelecimento\n"
                 + "(\n"
                 + "	nome, foto, endereco, coordenada\n"
                 + ")\n"
                 + "VALUES\n"
                 + "(\n"
-                + "	?,?,?, point("+Float.valueOf(object.getLatitude())+","+Float.valueOf(object.getLongitude())+")\n"
+                + "	?,(SELECT currval ('estabelecimento_idestabelecimento_seq')),?,"
+                + " point("+Float.valueOf(object.getLatitude())+","+Float.valueOf(object.getLongitude())+")\n"
                 + ");\n"
                 + "INSERT INTO public.horario_abertura \n"
                 + "(\n"
@@ -50,26 +56,21 @@ public class EstabelecimentoDAO {
                 + ")";
         PreparedStatement stmt = connection.prepareStatement(SQL);
         stmt.setString(1, object.getNome());
-        stmt.setString(2, null);//object.getFoto());
-        stmt.setString(3, object.getEndereco());
-        stmt.setString(4, object.getDomAbertura());
-        stmt.setString(5, object.getSegAbertura());
-        stmt.setString(6, object.getTerAbertura());
-        stmt.setString(7, object.getQuaAbertura());
-        stmt.setString(8, object.getQuiAbertura());
-        stmt.setString(9, object.getSexAbertura());
-        stmt.setString(10, object.getSabAbertura());
-        stmt.setString(11, object.getDomFechamento());
-        stmt.setString(12, object.getSegFechamento());
-        stmt.setString(13, object.getTerFechamento());
-        stmt.setString(14, object.getQuaFechamento());
-        stmt.setString(15, object.getQuiFechamento());
-        stmt.setString(16, object.getSexFechamento());
-        stmt.setString(17, object.getSabFechamento());
-        
-        // upload de foto
-        FileUploadMBean upload = new FileUploadMBean();
-        upload.uploadFile(object.getFile1(), "estabelecimento");
+        stmt.setString(2, object.getEndereco());
+        stmt.setString(3, object.getDomAbertura());
+        stmt.setString(4, object.getSegAbertura());
+        stmt.setString(5, object.getTerAbertura());
+        stmt.setString(6, object.getQuaAbertura());
+        stmt.setString(7, object.getQuiAbertura());
+        stmt.setString(8, object.getSexAbertura());
+        stmt.setString(9, object.getSabAbertura());
+        stmt.setString(10, object.getDomFechamento());
+        stmt.setString(11, object.getSegFechamento());
+        stmt.setString(12, object.getTerFechamento());
+        stmt.setString(13, object.getQuaFechamento());
+        stmt.setString(14, object.getQuiFechamento());
+        stmt.setString(15, object.getSexFechamento());
+        stmt.setString(16, object.getSabFechamento());
 
         if (stmt.executeUpdate() > 0) {
             System.out.println("Cadastrou com sucesso!");

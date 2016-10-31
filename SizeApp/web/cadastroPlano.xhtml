@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+  <h:head>
+    <title>Cadastro de Plano</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="src/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="src/css/animate.css" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5DQHcJ16ycFr7TzXn4oZo9WM2b5Z_8J0&amp;libraries=drawing">
+    </script>
+    <style type="text/css">
+      html, body { 
+        height: 100%; 
+        margin: 0; 
+        padding: 0; 
+      }
+
+    </style>
+  </h:head>
+    <h:body rendered="true">
+    <div class="container">´
+      <h:form enctype="multipart/form-data">
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label>Plano</label>
+            <input class="form-control" type="text" jsf:value="#{PlanoController.planoModel.nome}" name="plano" placeholder="Unimed" required="required" />
+          
+          </div>
+
+        </div>
+ 
+              <h:commandButton  rendered="true" class="btn btn-primary btn-lg" action="#{PlanoController.cadastrar()}" value="Cadastrar" />
+
+
+        <!--<h:inputText class="btn btn-default" type="reset" value="Limpar" />-->
+      </h:form>
+    </div>
+  </h:body>
+  <script src="src/js/jquery.js" type="text/javascript"></script>
+  <script src="src/js/bootstrap.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="src/js/maps.js"></script>
+</html>
