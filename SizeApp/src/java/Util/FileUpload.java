@@ -24,7 +24,7 @@ public class FileUpload implements Serializable {
     private static final long serialVersionUID = 1L;
     public static final int BUFFER_SIZE = 1024;
 
-
+    
     public String uploadFile(Part file1, String tipo, String nomeImagem) throws IOException {
         File outputFile = null;
         InputStream inputStream = null;
