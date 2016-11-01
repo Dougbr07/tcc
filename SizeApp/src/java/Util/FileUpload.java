@@ -25,7 +25,7 @@ public class FileUpload implements Serializable {
     public static final int BUFFER_SIZE = 1024;
 
     
-    public String uploadFile(Part file1, String tipo, String nomeImagem) throws IOException {
+    public String uploadFile(Part file1, String tipo, String imagemNome) throws IOException {
         File outputFile = null;
         InputStream inputStream = null;
         OutputStream outputStream = null;
@@ -39,13 +39,12 @@ public class FileUpload implements Serializable {
           
             // destino do arquivo
             if(tipo.equals("estabelecimento")){
-            outputFile = new File(path + File.separator + "WEB-INF"+File.separator+"imagens"+ File.separator + "estabelecimento"
-                    + File.separator + nomeImagem);
+            outputFile = new File(path + File.separator + "WEB-INF\\imagens\\estabelecimento"
+                    + File.separator + imagemNome);
             }else{
-            outputFile = new File(path + File.separator + "WEB-INF"+File.separator+"imagens"+ File.separator + "usuario"
-                    + File.separator + nomeImagem);
+            outputFile = new File(path + File.separator + "WEB-INF\\imagens\\estabelecimento"
+                    + File.separator + imagemNome);            
             }
-            
             inputStream = file1.getInputStream();
             
             outputStream = new FileOutputStream(outputFile);

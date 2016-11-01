@@ -23,12 +23,36 @@ public class EstabelecimentoDAO {
         connection = Conexao.getConnection();
     }
     
+      public int ultimoId(){
    
+    int id = 0;
+
+            try{
+
+                String sql = "SELECT MAX(idestabelecimento) FROM estabelecimento";
+                PreparedStatement prep = connection.prepareStatement(sql);
+                ResultSet rs = prep.executeQuery();
+
+                while(rs.next()){
+
+                    id = rs.getInt("max");
+
+                }
+
+
+            } catch (SQLException ex) {
+                System.out.println("Erro" + ex);
+            }
+
+        return id;
+   
+   
+   }
  
 
     public boolean insert(EstabelecimentoModel object) throws SQLException, IOException {
         String SQL;
-
+        
         SQL = "INSERT INTO public.estabelecimento\n"
                 + "(\n"
                 + "	nome, foto, endereco, coordenada\n"
@@ -37,7 +61,7 @@ public class EstabelecimentoDAO {
                 + "(\n"
                 + "	?,(SELECT currval ('estabelecimento_idestabelecimento_seq')||'.png'),?,"
                 + " point("+Float.valueOf(object.getLatitude())+","+Float.valueOf(object.getLongitude())+")\n"
-                + ");\n"
+                + ") ;\n"
                 + "INSERT INTO public.horario_abertura \n"
                 + "(\n"
                 + "	domingo, segunda, terca, quarta, quinta, sexta, sabado, idestabelecimento\n"
@@ -71,12 +95,15 @@ public class EstabelecimentoDAO {
         stmt.setString(14, object.getQuiFechamento());
         stmt.setString(15, object.getSexFechamento());
         stmt.setString(16, object.getSabFechamento());
-        
-        
+       
 
         if (stmt.executeUpdate() > 0) {
             System.out.println("Cadastrou com sucesso!");
-            //UploadImagem(object.getFile1());
+              
+              
+              FileUpload upload = new FileUpload();
+              upload.uploadFile(object.getFile1(), "estabelecimento", ultimoId() + ".png");
+        
             return true;
         } else {
             System.out.println("Faiô... :'(");
@@ -158,7 +185,6 @@ public class EstabelecimentoDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private FileUpload FileUpload() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
+
 }
