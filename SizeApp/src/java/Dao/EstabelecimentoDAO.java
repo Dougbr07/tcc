@@ -52,14 +52,14 @@ public class EstabelecimentoDAO {
 
     public boolean insert(EstabelecimentoModel object) throws SQLException, IOException {
         String SQL;
-        
+        String PATH = "WEB-INF\\imagens\\estabelecimento";
         SQL = "INSERT INTO public.estabelecimento\n"
                 + "(\n"
                 + "	nome, foto, endereco, coordenada\n"
                 + ")\n"
                 + "VALUES\n"
                 + "(\n"
-                + "	?,(SELECT currval ('estabelecimento_idestabelecimento_seq')||'.png'),?,"
+                + "	?,("+PATH+"||SELECT currval ('estabelecimento_idestabelecimento_seq')||'.png'),?,"
                 + " point("+Float.valueOf(object.getLatitude())+","+Float.valueOf(object.getLongitude())+")\n"
                 + ") ;\n"
                 + "INSERT INTO public.horario_abertura \n"

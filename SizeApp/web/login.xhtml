@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="UTF-8" />
+        <meta name="google-signin-scope" content="profile email" />
+        <meta name="google-signin-client_id" content="377306572429-fdovga51la59ekd7n1qjsqltl0sjskod.apps.googleusercontent.com" />
+        <script src="https://apis.google.com/js/platform.js" async="" defer=""></script>
+
+        <script>
+            function onSignIn(response) {
+                // Conseguindo as informações do seu usuário:
+                var perfil = response.getBasicProfile();
+
+                // Conseguindo o ID do Usuário
+                var userID = perfil.getId();
+
+                // Conseguindo o Nome do Usuário
+                var userName = perfil.getName();
+
+                // Conseguindo o E-mail do Usuário
+                var userEmail = perfil.getEmail();
+
+                // Conseguindo a URL da Foto do Perfil
+                var userPicture = perfil.getImageUrl();
+                document.getElementById('id').value = userID;
+                document.getElementById('profile').src = userPicture;
+                document.getElementById('nome').value = userName;
+                document.getElementById('email').value = userEmail;
+
+                // Recebendo o TOKEN que você usará nas demais requisições à API:
+                var LoR = response.getAuthResponse().id_token;
+                alert(LoR);
+                console.log("~ le Tolkien: " + LoR);
+            }
+            ;
+        </script>
+    </head>
+    <body>
+        <img id="profile" src="" />
+        <label>ID do usuário</label>
+        <input id="id" type="text" name="id"/>
+        <label>Nome do usuário</label>
+        <input id="nome" type="text" name="nome"/>
+        <label>E-mail</label>
+        <input id="email" type="text" name="email"/>  
+        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" data-width="370" data-height="50" data-longtitle="true" data-lang="pt-BR"></div>
+
+    </body>
+</html>
