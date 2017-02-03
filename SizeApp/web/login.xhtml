@@ -32,7 +32,8 @@
 
                 // Recebendo o TOKEN que você usará nas demais requisições à API:
                 var LoR = response.getAuthResponse().id_token;
-                alert(LoR);
+                document.getElementById('token').value = LoR;
+                //alert(LoR);
                 console.log("~ le Tolkien: " + LoR);
             }
             ;
@@ -40,10 +41,12 @@
     </head>
     <body>
         <img id="profile" src="" />
+        <label>Token</label>
+        <textarea id="token" name="token"/>
         <label>ID do usuário</label>
         <input id="id" type="text" name="id"/>
         <label>Nome do usuário</label>
-        <input id="nome" type="text" name="nome"/>
+        <input id="nome" type="t    ext" name="nome"/>
         <label>E-mail</label>
         <input id="email" type="text" name="email"/>  
         <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" data-width="370" data-height="50" data-longtitle="true" data-lang="pt-BR"></div>
