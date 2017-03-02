@@ -1,45 +1,41 @@
 package Controller;
 
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import Dao.GoogleDAO;
+import Model.GoogleModel;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.sql.SQLException;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
+@ManagedBean(name = "GoogleController")
+@SessionScoped
 public class GoogleController {
 
-    GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
-            .setAudience(Collections.singletonList(CLIENT_ID))
-            // Or, if multiple clients access the backend:
-            //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
-            .build();
-
-// (Receive idTokenString by HTTPS POST)
-    GoogleIdToken idToken = verifier.verify(idTokenString);
-    if (idToken
-
+    private final GoogleDAO googleDAO;
+    public GoogleModel googleModel = new GoogleModel();
     
-        != null) {
-  Payload payload = idToken.getPayload();
-
-        // Print user identifier
-        String userId = payload.getSubject();
-        System.out.println("User ID: " + userId);
-
-        // Get profile information from payload
-        String email = payload.getEmail();
-        boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
-        String name = (String) payload.get("name");
-        String pictureUrl = (String) payload.get("picture");
-        String locale = (String) payload.get("locale");
-        String familyName = (String) payload.get("family_name");
-        String givenName = (String) payload.get("given_name");
-
-        // Use or store profile information
-        // ...
+    public GoogleController(){
+        this.googleDAO = new GoogleDAO();
     }
 
-    
-        else {
-  System.out.println("Invalid ID token.");
+    public GoogleModel getGoogleModel() {
+        return googleModel;
     }
 
+    public void setGoogleModel(GoogleModel googleModel) {
+        this.googleModel = googleModel;
+    }
+    
+    public void autenticar() throws SQLException, GeneralSecurityException, IOException{
+        if(googleDAO.validateIdToken(googleModel)){
+            UsuarioController usuarioController = new UsuarioController();
+            usuarioController.login(googleModel);
+        }else{
+            FacesContext.getCurrentInstance().addMessage("xxx", new FacesMessage("Algo deu errado, tente novamente mais tarde!"));
+        }
+        
+    }
 }

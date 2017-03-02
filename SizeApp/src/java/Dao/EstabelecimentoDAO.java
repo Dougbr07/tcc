@@ -22,61 +22,49 @@ public class EstabelecimentoDAO {
     public EstabelecimentoDAO() {
         connection = Conexao.getConnection();
     }
-    
-      public int ultimoId(){
-   
-    int id = 0;
 
-            try{
-
-                String sql = "SELECT MAX(idestabelecimento) FROM estabelecimento";
-                PreparedStatement prep = connection.prepareStatement(sql);
-                ResultSet rs = prep.executeQuery();
-
-                while(rs.next()){
-
-                    id = rs.getInt("max");
-
-                }
-
-
-            } catch (SQLException ex) {
-                System.out.println("Erro" + ex);
+    public int ultimoId() {
+        int id = 0;
+        try {
+            String sql = "SELECT MAX(idestabelecimento) FROM estabelecimento";
+            PreparedStatement prep = connection.prepareStatement(sql);
+            ResultSet rs = prep.executeQuery();
+            while (rs.next()) {
+                id = rs.getInt("max");
             }
-
+        } catch (SQLException ex) {
+            System.out.println("Erro" + ex);
+        }
         return id;
-   
-   
-   }
- 
+    }
 
     public boolean insert(EstabelecimentoModel object) throws SQLException, IOException {
         String SQL;
         String PATH = "WEB-INF\\imagens\\estabelecimento";
         SQL = "INSERT INTO public.estabelecimento\n"
                 + "(\n"
-                + "	nome, foto, endereco, coordenada\n"
+                + "    nome, foto, endereco, coordenada\n"
                 + ")\n"
                 + "VALUES\n"
                 + "(\n"
-                + "	?,("+PATH+"||SELECT currval ('estabelecimento_idestabelecimento_seq')||'.png'),?,"
+                + "    ?,'"+PATH+"'||(SELECT currval ('estabelecimento_idestabelecimento_seq'))||'.png',?,"
                 + " point("+Float.valueOf(object.getLatitude())+","+Float.valueOf(object.getLongitude())+")\n"
                 + ") ;\n"
                 + "INSERT INTO public.horario_abertura \n"
                 + "(\n"
-                + "	domingo, segunda, terca, quarta, quinta, sexta, sabado, idestabelecimento\n"
+                + "    domingo, segunda, terca, quarta, quinta, sexta, sabado, idestabelecimento\n"
                 + ")\n"
                 + "VALUES \n"
                 + "(\n"
-                + "	?,?,?,?,?,?,?,(SELECT currval('estabelecimento_idestabelecimento_seq'))\n"
+                + "    ?,?,?,?,?,?,?,(SELECT currval('estabelecimento_idestabelecimento_seq'))\n"
                 + ");\n"
                 + "INSERT INTO public.horario_fechamento\n"
                 + "(\n"
-                + "	domingo, segunda, terca, quarta, quinta, sexta, sabado, idestabelecimento\n"
+                + "    domingo, segunda, terca, quarta, quinta, sexta, sabado, idestabelecimento\n"
                 + ")\n"
                 + "VALUES \n"
                 + "(\n"
-                + "	?,?,?,?,?,?,?,(SELECT currval('estabelecimento_idestabelecimento_seq'))\n"
+                + "    ?,?,?,?,?,?,?,(SELECT currval('estabelecimento_idestabelecimento_seq'))\n"
                 + ")";
         PreparedStatement stmt = connection.prepareStatement(SQL);
         stmt.setString(1, object.getNome());
@@ -95,24 +83,21 @@ public class EstabelecimentoDAO {
         stmt.setString(14, object.getQuiFechamento());
         stmt.setString(15, object.getSexFechamento());
         stmt.setString(16, object.getSabFechamento());
-       
 
-        if (stmt.executeUpdate() > 0) {
+        if (stmt.executeUpdate() > 0 ) {
             System.out.println("Cadastrou com sucesso!");
-              
-              
-              FileUpload upload = new FileUpload();
-              upload.uploadFile(object.getFile1(), "estabelecimento", ultimoId() + ".png");
-        
+
+            FileUpload upload = new FileUpload();
+            upload.uploadFile(object.getFile1(), "estabelecimento", ultimoId() + ".png");
+
             return true;
         } else {
             System.out.println("Faiô... :'(");
             return false;
         }
-        
-        
-        
+
     }
+
     public boolean remove(EstabelecimentoModel object) {
 
         try {
@@ -184,7 +169,5 @@ public class EstabelecimentoDAO {
     public boolean insert(EstabelecimentoDAO estabelecimento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-
 
 }

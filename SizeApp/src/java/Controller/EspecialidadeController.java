@@ -17,35 +17,31 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name = "EspecialidadeController")
 @SessionScoped
 public class EspecialidadeController {
-    
-    
-     private final EspecialidadeDAO especialidadeDAO;
-  public EspecialidadeModel especialidadeModel = new EspecialidadeModel();
 
-  public EspecialidadeController() {
-    this.especialidadeDAO = new EspecialidadeDAO();
-  }
+    private final EspecialidadeDAO especialidadeDAO;
+    public EspecialidadeModel especialidadeModel = new EspecialidadeModel();
 
-  public EspecialidadeModel getEspecialidadeModel() {
-    return especialidadeModel;
-  }
-
-  public void setEspecialidadeModel(EspecialidadeModel especialidadeModel) {
-    this.especialidadeModel = especialidadeModel;
-  }
-
-  public boolean cadastrar() {
-    boolean resultado = false;
-    try {
-      resultado = this.especialidadeDAO.insert(especialidadeModel);
-    } catch (Exception e) {
-      e.printStackTrace();
+    public EspecialidadeController() {
+        this.especialidadeDAO = new EspecialidadeDAO();
     }
-    return resultado;
 
-  }
-    
-    
-    
-    
+    public EspecialidadeModel getEspecialidadeModel() {
+        return especialidadeModel;
+    }
+
+    public void setEspecialidadeModel(EspecialidadeModel especialidadeModel) {
+        this.especialidadeModel = especialidadeModel;
+    }
+
+    public boolean cadastrar() {
+        boolean resultado = false;
+        try {
+            resultado = this.especialidadeDAO.insert(especialidadeModel);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultado;
+
+    }
+
 }

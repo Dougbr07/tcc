@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
     <head>
-        <title>TODO supply a title</title>
+        <title>SizeApp - Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta charset="UTF-8" />
+        <link href="../src/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="../src/css/animate.css" />
         <meta name="google-signin-scope" content="profile email" />
         <meta name="google-signin-client_id" content="377306572429-fdovga51la59ekd7n1qjsqltl0sjskod.apps.googleusercontent.com" />
         <script src="https://apis.google.com/js/platform.js" async="" defer=""></script>
@@ -32,24 +36,48 @@
 
                 // Recebendo o TOKEN que você usará nas demais requisições à API:
                 var LoR = response.getAuthResponse().id_token;
-                document.getElementById('token').value = LoR;
+                document.getElementById('j_idt4:idToken').value = LoR;
                 //alert(LoR);
                 console.log("~ le Tolkien: " + LoR);
             }
             ;
         </script>
+        <style type="text/css">
+            html, body { 
+                height: 100%; 
+                margin: 0; 
+                padding: 0; 
+            }
+            #map { 
+                width: 100%;
+                height: 200px;
+            }
+        </style>
     </head>
-    <body>
+    <h:body>
         <img id="profile" src="" />
-        <label>Token</label>
-        <textarea id="token" name="token"/>
+
         <label>ID do usuário</label>
         <input id="id" type="text" name="id"/>
         <label>Nome do usuário</label>
-        <input id="nome" type="t    ext" name="nome"/>
+        <input id="nome" type="text" name="nome"/>
         <label>E-mail</label>
         <input id="email" type="text" name="email"/>  
         <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" data-width="370" data-height="50" data-longtitle="true" data-lang="pt-BR"></div>
-
-    </body>
+        <div class="container-fluid">
+            <h:form enctype="multipart/form-data">
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label>Token ID</label>
+                           <input class="form-control idToken" type="text" jsf:value="#{GoogleController.googleModel.idToken}" name="idToken" required="required" />
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group col-sm-6">
+                        <h:commandButton class="btn btn-primary btn-lg" action="#{GoogleController.autenticar()}" value="Sign in" />
+                    </div>
+                </div>
+            </h:form>
+        </div>    
+    </h:body>
 </html>
