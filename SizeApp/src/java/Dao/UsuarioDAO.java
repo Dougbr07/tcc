@@ -58,7 +58,6 @@ public class UsuarioDAO {
             ResultSet rs = prep.executeQuery();
 
             while (rs.next()) {
-
                 UsuarioModel usuario = new UsuarioModel();
                 usuario.setNome(rs.getString("nome"));
                 usuario.setEmail(rs.getString("email"));
@@ -81,9 +80,8 @@ public class UsuarioDAO {
                 PreparedStatement prep = connection.prepareStatement(sql);
                 prep.setString(1, ((GoogleModel) model).getEmail());
                 ResultSet rs = prep.executeQuery();
-                if(rs.next()){
+                if (rs.next()) {
                     result = true;
-                    System.out.println("Teste "+result);
                     return result;
                 }
             } else if (model instanceof UsuarioModel) {
@@ -92,10 +90,23 @@ public class UsuarioDAO {
                 prep.setString(1, ((UsuarioModel) model).getEmail());
                 prep.setString(2, ((UsuarioModel) model).getSenha());
                 ResultSet rs = prep.executeQuery();
-                result = rs.last();
-                return result;
+                if (rs.next()) {
+                    result = true;
+                    return result;
+                }
             }
         }
         return result;
     }
+
+    public void verificarPerfil(UsuarioModel usuario) throws SQLException {
+        String sql = "SELECT perfil FROM usuario WHERE email = ?";
+        PreparedStatement prep = connection.prepareStatement(sql);
+        prep.setString(1, usuario.getEmail());
+        ResultSet rs = prep.executeQuery();
+        if (rs.next()) {
+            usuario.setPerfil(rs.getInt("perfil"));
+        }
+    }
+    
 }

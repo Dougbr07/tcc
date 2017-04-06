@@ -10,12 +10,13 @@ package Model;
  * @author Nilson França
  */
 public class UsuarioModel {
-    
+
     private int idUsuario;
     private String nome;
     private int status;
     private String senha;
     private String email;
+    private int perfil;
     private String foto;
 
     /**
@@ -88,6 +89,14 @@ public class UsuarioModel {
         this.email = email;
     }
 
+    public int getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(int perfil) {
+        this.perfil = perfil;
+    }
+
     /**
      * @return the foto
      */
@@ -101,6 +110,5 @@ public class UsuarioModel {
     public void setFoto(String foto) {
         this.foto = foto;
     }
-    
-    
+
 }

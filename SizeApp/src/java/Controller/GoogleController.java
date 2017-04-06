@@ -32,9 +32,10 @@ public class GoogleController {
     public void autenticar() throws SQLException, GeneralSecurityException, IOException{
         if(googleDAO.validateIdToken(googleModel)){
             UsuarioController usuarioController = new UsuarioController();
-            usuarioController.login(googleModel);
+            usuarioController.usuarioModel = googleModel;
+            usuarioController.login();
         }else{
-            FacesContext.getCurrentInstance().addMessage("xxx", new FacesMessage("Algo deu errado, tente novamente mais tarde!"));
+            FacesContext.getCurrentInstance().addMessage("formx:email", new FacesMessage("idToken Inválido!"));
         }
         
     }
