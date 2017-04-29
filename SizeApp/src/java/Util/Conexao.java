@@ -16,9 +16,9 @@ public class Conexao {
 //    private static final String senha = "123456";
     
     private static Connection connection = null;
-    private static final String url = "jdbc:postgresql://localhost/sizeapp";
-    private static final String usuario = "postgres";
-    private static final String senha = "postgres";
+    private static final String URL = "jdbc:postgresql://localhost/sizeapp";
+    private static final String USUARIO = "postgres";
+    private static final String SENHA = "postgres";
 
     private Conexao(Conexao obj) {
         obj.getConnection();
@@ -28,7 +28,7 @@ public class Conexao {
         try {
             if (connection == null || connection.isClosed()) {
                 Class.forName("org.postgresql.Driver");
-                connection = DriverManager.getConnection(url, usuario, senha);
+                connection = DriverManager.getConnection(URL, USUARIO, SENHA);
                 return connection;
             }
             return connection;

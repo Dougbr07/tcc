@@ -27,11 +27,11 @@ public class UserFilter implements Filter {
         UsuarioModel usuarioModel = (UsuarioModel) session.getAttribute("usuario");
         if (usuarioModel != null) {
             if (usuarioModel.getPerfil() == 2) {
-                ((HttpServletResponse) response).sendRedirect(session.getServletContext().getContextPath() + "/app/index.xhtml");
+                ((HttpServletResponse) response).sendRedirect(session.getServletContext().getContextPath() + "/");
             }
             chain.doFilter(request, response);
         }else{
-            ((HttpServletResponse) response).sendRedirect(session.getServletContext().getContextPath() + "/app/index.xhtml");
+            ((HttpServletResponse) response).sendRedirect(session.getServletContext().getContextPath() + "/");
         }
         
         

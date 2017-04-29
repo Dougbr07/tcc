@@ -38,7 +38,6 @@ public class GoogleDAO {
         if (idToken != null) {
 
             Payload payload = idToken.getPayload();
-
             // Print user identifier
             String userId = payload.getSubject();
             // Get profile information from payload
@@ -51,7 +50,7 @@ public class GoogleDAO {
             String givenName = (String) payload.get("given_name");
             object.setNome(name);
             object.setEmail(email);
-            object.setFoto(pictureUrl);
+            object.setFotoUrl(pictureUrl);
             return true;
             // Use or store profile information
             // ...

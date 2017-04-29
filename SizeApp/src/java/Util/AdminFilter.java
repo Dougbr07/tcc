@@ -27,14 +27,12 @@ public class AdminFilter implements Filter {
         UsuarioModel usuarioModel = (UsuarioModel) session.getAttribute("usuario");
         if (usuarioModel != null) {
             if (usuarioModel.getPerfil() == 1) {
-                ((HttpServletResponse) response).sendRedirect(session.getServletContext().getContextPath() + "/main/index.xhtml");
+                ((HttpServletResponse) response).sendRedirect(session.getServletContext().getContextPath() + "/main/");
             }
             chain.doFilter(request, response);
         }else{
-            ((HttpServletResponse) response).sendRedirect(session.getServletContext().getContextPath() + "/app/index.xhtml");
+            ((HttpServletResponse) response).sendRedirect(session.getServletContext().getContextPath() + "/index.xhtml");
         }
-        
-        
     }
 
     public void init(FilterConfig arg0) throws ServletException {

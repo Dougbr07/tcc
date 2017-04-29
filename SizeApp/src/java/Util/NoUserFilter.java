@@ -25,9 +25,10 @@ public class NoUserFilter implements Filter {
 
         HttpSession session = ((HttpServletRequest) request).getSession();
         UsuarioModel usuarioModel = (UsuarioModel) session.getAttribute("usuario");
+        
         if(usuarioModel != null) {
             if (usuarioModel.getPerfil() == 1) {
-                ((HttpServletResponse) response).sendRedirect(session.getServletContext().getContextPath() + "/main/index.xhtml");
+                ((HttpServletResponse) response).sendRedirect(session.getServletContext().getContextPath() + "/main/");
             }
         }
         chain.doFilter(request, response);

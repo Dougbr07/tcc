@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
-/**
- *
- * @author Nilson França
- */
+import javax.servlet.http.Part;
+
+
 public class UsuarioModel {
 
     private int idUsuario;
@@ -17,7 +11,16 @@ public class UsuarioModel {
     private String senha;
     private String email;
     private int perfil;
-    private String foto;
+    private String fotoUrl;
+    private Part foto;
+
+    public String getFotoUrl() {
+        return fotoUrl;
+    }
+
+    public void setFotoUrl(String fotoUrl) {
+        this.fotoUrl = fotoUrl;
+    }
 
     /**
      * @return the idUsuario
@@ -97,18 +100,12 @@ public class UsuarioModel {
         this.perfil = perfil;
     }
 
-    /**
-     * @return the foto
-     */
-    public String getFoto() {
+    public Part getFoto() {
         return foto;
     }
 
-    /**
-     * @param foto the foto to set
-     */
-    public void setFoto(String foto) {
+    public void setFoto(Part foto) {
         this.foto = foto;
     }
-
+    
 }

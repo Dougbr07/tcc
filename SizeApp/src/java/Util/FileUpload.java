@@ -39,11 +39,10 @@ public class FileUpload implements Serializable {
           
             // destino do arquivo
             if(tipo.equals("estabelecimento")){
-            outputFile = new File(path + File.separator + "WEB-INF\\imagens\\estabelecimento"
+            outputFile = new File(path + File.separator + "\\WebContent\\imagens\\estabelecimento"
                     + File.separator + imagemNome);
-            }else{
-            outputFile = new File(path + File.separator + "WEB-INF\\imagens\\estabelecimento"
-                    + File.separator + imagemNome);            
+            }else if (tipo.equals("usuario")){
+            outputFile = new File("C:\\Users\\Lucas\\Documents\\NetBeansProjects\\tcc\\SizeApp\\web\\WebContent\\imagens\\usuario\\" + imagemNome);            
             }
             inputStream = file1.getInputStream();
             

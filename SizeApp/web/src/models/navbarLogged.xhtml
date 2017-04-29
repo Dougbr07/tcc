@@ -1,0 +1,62 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <style>
+        .navbar-brand img{
+            height: 100%;               
+        }
+        .navbar{
+            margin-bottom: 0px !important;
+            position: absolute;
+        }
+        @media (min-width: 768px){
+            .buttonGroupLg{display:block;}
+            .buttonGroupSm{display:none;}
+        }
+        @media (max-width: 767px){
+            .buttonGroupLg{display:none;}
+            .buttonGroupSm{display:block;}
+        }
+        .img-circle{
+            margin: 5px;
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://localhost:8080/SizeApp">
+                    <img class="logo" alt="SizeApp" src="http://localhost:8080/SizeApp/src/imagens/brand-navbar.png" />
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://localhost:8080/SizeApp/">Início</a></li>
+                    <li><a href="#">Sobre nós</a></li>
+                    <li><a href="#">Pesquisar</a></li>
+                    <li><p class="navbar-text">Olá, <a href="http://localhost:8080/SizeApp/main/minhaconta/"><h:outputText value="#{UsuarioController.loggedUser.nome}"/></a></p></li>
+                    <li><h:graphicImage class="img-circle" url="#{UsuarioController.loggedUser.fotoUrl}"/></li>
+                    <li>
+                        <h:form>
+                            <h:commandButton class="navbar-btn btn-xs btn-primary btn-danger" action="#{UsuarioController.logout()}" value="Sair" />
+                        </h:form>
+                    </li>
+                    
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</ui:composition>
