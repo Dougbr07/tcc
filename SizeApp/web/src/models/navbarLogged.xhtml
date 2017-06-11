@@ -19,7 +19,7 @@
             .buttonGroupLg{display:none;}
             .buttonGroupSm{display:block;}
         }
-        .img-circle{
+        .user-image{
             margin: 5px;
             width: 40px;
             height: 40px;
@@ -48,7 +48,7 @@
                     <li><a href="#">Sobre nós</a></li>
                     <li><a href="#">Pesquisar</a></li>
                     <li><p class="navbar-text">Olá, <a href="http://localhost:8080/SizeApp/main/minhaconta/"><h:outputText value="#{UsuarioController.loggedUser.nome}"/></a></p></li>
-                    <li><h:graphicImage class="img-circle" url="#{UsuarioController.loggedUser.fotoUrl}"/></li>
+                    <li><h:graphicImage class="img-circle user-image" url="#{UsuarioController.loggedUser.fotoUrl}"/></li>
                     <li>
                         <h:form>
                             <h:commandButton class="navbar-btn btn-xs btn-primary btn-danger" action="#{UsuarioController.logout()}" value="Sair" />

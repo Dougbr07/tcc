@@ -5,63 +5,328 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <h:head>
-        <title>SizeApp</title>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link href="http://localhost:8080/SizeApp/src/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" type="text/css" href="http://localhost:8080/SizeApp/src/css/animate.css" />
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5DQHcJ16ycFr7TzXn4oZo9WM2b5Z_8J0&amp;libraries=drawing">
-        </script>
-        <style type="text/css">
-            html, body { 
-                height: 100%; 
-                margin: 0; 
-                padding: 0; 
-            }
-            #map { 
-                width: 100%;
-                height: 400px;
-            }
-            .jumbotron{
-                background: url("http://localhost:8080/SizeApp/src/imagens/background.jpg") no-repeat center center;
-                height: 80%;
-                min-height: 80%;
-                background-color: grey;
-                display: flex;
-                align-items: center;
-            }
-            .jumbotron h1{
-                /*                margin-top: 20%;*/
-                color: #fff;
-                font-family: arial black;
-                text-shadow: #888383 1px -1px 2px, #888383 -1px 1px 2px, #888383 1px 1px 2px, #888383 -1px -1px 2px;
-            }
-            .jumbotron h3{
-                color: #fff;
-                font-family: arial;
-                text-shadow: #888383 1px -1px 1px, #888383 -1px 1px 1px, #888383 1px 1px 1px, #888383 -1px -1px 1px;
-            }
-        </style>
-    </h:head>
-    <h:body onload='initMap();'>
-        <ui:include src="/src/models/navbar.xhtml" />
-        <div class="jumbotron text-center">
-            <div class="container-fluid">
-                <div class="row">
-                    <h1>O que você procura?</h1>
-                </div>
-                <div class="row">
-                    <h3>No SizeApp você encontra as melhores unidades de saúde avaliadas por pessoas reais.</h3>
-                </div>            
-            </div>
+  <h:head>
+    <title>SizeApp</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="/SizeApp/src/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/SizeApp/src/css/animate.css" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5DQHcJ16ycFr7TzXn4oZo9WM2b5Z_8J0&amp;libraries=drawing">
+    </script>
+    <style type="text/css">
+      html, body { 
+        height: 100%; 
+        margin: 0; 
+        padding: 0; 
+      }
+      #map { 
+        width: 100%;
+        height: 400px;
+      }
+      .jumbotron{
+        background: url("src/imagens/background.jpg") no-repeat center center;
+        background-size: cover;
+        height: 80%;
+        min-height: 80%;
+        background-color: grey;
+        display: flex;
+        align-items: center;
+      }
+      .jumbotron h1{
+        /*                margin-top: 20%;*/
+        color: #fff;
+        font-family: arial black;
+        text-shadow: #888383 1px -1px 2px, #888383 -1px 1px 2px, #888383 1px 1px 2px, #888383 -1px -1px 2px;
+      }
+      .jumbotron h3{
+        color: #fff;
+        font-family: arial;
+        text-shadow: #888383 1px -1px 1px, #888383 -1px 1px 1px, #888383 1px 1px 1px, #888383 -1px -1px 1px;
+      }
+      .content-mobile{
+        display: none;
+      }
+      @media(max-width: 767px){
+        .input-group{margin-left: -30px;}
+        .search-container{margin-top: -30px;}
+        #map{margin-top: 0px !important;}
+        .content-default{display:none;}
+        .content-mobile{display:block;}
+
+        /*.results-field{margin-left: -30px;}*/
+      }
+      @media(min-width: 768px){
+        .dropdown-menu{ display: none !important;}
+      }
+      .results-field{
+        display: none;
+      }
+      ::-webkit-scrollbar-track {
+        background-color: #F4F4F4;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+        background: #F4F4F4;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #dad7d7;
+      }
+      .panel{
+        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.28);
+      }
+      .panel-header{
+        width: 100%;
+        height: 50%;
+        padding: 10px;
+        background: url('https://imagesapt.apontador-assets.com/fit-in/640x480/1d0a509ec5b348b581e65431ef37a550/hospital-unimed.jpg') no-repeat center center;
+      }
+      .panel-header h3{
+        position: absolute;
+        bottom: 50%;
+        color: #fff;
+        text-shadow: 0px 0px 8px #000;
+      }
+      .establishment-panel{
+        padding: 0px !important;
+        height: 350px;
+      }
+    </style>
+  </h:head>
+  <h:body onload='initMap();'>
+    <ui:include src="src/models/navbar.xhtml" />
+    <div class="jumbotron text-center">
+      <div class="container-fluid">
+        <div class="row">
+          <h1>O que você procura?</h1>
         </div>
-        <div class="container-fluid">
-            <div id="map"></div>
+        <div class="row">
+          <h3>No SizeApp você encontra as melhores unidades de saúde avaliadas por pessoas reais.</h3>
+        </div>            
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 search-container" id="search-container">
+        <div class="input-group" style="z-index: 100; position: absolute;">
+
+          <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search"></span></span>
+          <input type="text" class="search-bar form-control" placeholder="Pesquisar..." aria-describedby="basic-addon1"><a href="/SizeApp/pesquisa">avançado</a></input>
+          <div class="results-field" style="position: absolute; z-index: 100; width: 100%; margin-top: 35px; margin-left: -40px; padding: 1px; max-height: 320px; overflow-y: scroll;">
+            <div class="list-group btn-group">
+              <button type="button" class="list-group-item dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="content-default">
+                  <div class="col-md-2 col-xs-2">
+                    <!--<img src="/SizeApp/WebContent/imagens/estabelecimento/"-->
+                    <img class="img-responsive img-circle" src="https://imagesapt.apontador-assets.com/fit-in/640x480/1d0a509ec5b348b581e65431ef37a550/hospital-unimed.jpg"/>
+                  </div>
+                  <div class="col-md-6 col-xs-5" style="margin-top: 2.5%;">
+                    <h4>Hospital Unimed - Farol</h4>
+                    <h5>4.5<span class="glyphicon glyphicon-star" style="font-size: 8pt;"></span></h5>
+                  </div>
+                  <div class="col-md-4 col-xs-3" style="display: inline-flex; padding-top: 3%;">
+                    <a class="btn btn-default btn-link" onclick="showLocation(-9.6458271, -35.7199795, 'Hospital Unimed - Farol', 'Hospital Unimed - Farol')" href="#map" style=""><span class="glyphicon glyphicon-map-marker"></span> ver no mapa</a>
+                    <a class="btn btn-default btn-link" href="#" style="">detalhes</a>
+                  </div>
+                </div>
+                <div class="content-mobile">
+                  <div class="col-xs-8">
+                    <h4>Hospital Unimed - Farol</h4>
+                    <h5>4.5<span class="glyphicon glyphicon-star" style="font-size: 8pt;"></span></h5>
+                  </div>
+                  <div class="col-xs-4" style="display: inline-flex;">
+                    <a href="#map" >ver no mapa</a>
+                    <a href="#" >detalhes</a>
+                  </div>
+                </div>
+
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#map">Ver no mapa</a></li>
+                <li><a href="#">Detalhes</a></li>
+              </ul>
+              <button type="button" class="list-group-item dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="content-default">
+                  <div class="col-md-2 col-xs-2">
+                    <!--<img src="/SizeApp/WebContent/imagens/estabelecimento/"-->
+                    <img class="img-responsive img-circle" src="https://imagesapt.apontador-assets.com/fit-in/640x480/1d0a509ec5b348b581e65431ef37a550/hospital-unimed.jpg"/>
+                  </div>
+                  <div class="col-md-6 col-xs-5" style="margin-top: 2.5%;">
+                    <h4>Hospital Unimed - Farol</h4>
+                    <h5>4.5<span class="glyphicon glyphicon-star" style="font-size: 8pt;"></span></h5>
+                  </div>
+                  <div class="col-md-4 col-xs-3" style="display: inline-flex; padding-top: 3%;">
+                    <a class="btn btn-default btn-link" onclick="showLocation(-9.2458271, -35.2199795)" href="#map" style=""><span class="glyphicon glyphicon-map-marker"></span> ver no mapa</a>
+                    <a class="btn btn-default btn-link" href="#" style="">detalhes</a>
+                  </div>
+                </div>
+                <div class="content-mobile">
+                  <div class="col-xs-8">
+                    <h4>Hospital Unimed - Farol</h4>
+                    <h5>4.5<span class="glyphicon glyphicon-star" style="font-size: 8pt;"></span></h5>
+                  </div>
+                  <div class="col-xs-4" style="display: inline-flex;">
+                    <a href="#map" >ver no mapa</a>
+                    <a href="#" >detalhes</a>
+                  </div>
+                </div>
+
+              </button>
+              <ul class="dropdown-menu collapsed">
+                <li><a href="#map">Ver no mapa</a></li>
+                <li><a href="#">Detalhes</a></li>
+              </ul>
+              <button type="button" class="list-group-item dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="content-default">
+                  <div class="col-md-2 col-xs-2">
+                    <!--<img src="/SizeApp/WebContent/imagens/estabelecimento/"-->
+                    <img class="img-responsive img-circle" src="https://imagesapt.apontador-assets.com/fit-in/640x480/1d0a509ec5b348b581e65431ef37a550/hospital-unimed.jpg"/>
+                  </div>
+                  <div class="col-md-6 col-xs-5" style="margin-top: 2.5%;">
+                    <h4>Hospital Unimed - Farol</h4>
+                    <h5>4.5<span class="glyphicon glyphicon-star" style="font-size: 8pt;"></span></h5>
+                  </div>
+                  <div class="col-md-4 col-xs-3" style="display: inline-flex; padding-top: 3%;">
+                    <a class="btn btn-default btn-link" onclick="showLocation(-9.6458271, -35.7199795)" href="#map" style=""><span class="glyphicon glyphicon-map-marker"></span> ver no mapa</a>
+                    <a class="btn btn-default btn-link" href="#" style="">detalhes</a>
+                  </div>
+                </div>
+                <div class="content-mobile">
+                  <div class="col-xs-8">
+                    <h4>Hospital Unimed - Farol</h4>
+                    <h5>4.5<span class="glyphicon glyphicon-star" style="font-size: 8pt;"></span></h5>
+                  </div>
+                  <div class="col-xs-4" style="display: inline-flex;">
+                    <a href="#map" >ver no mapa</a>
+                    <a href="#" >detalhes</a>
+                  </div>
+                </div>
+
+              </button>
+              <ul class="dropdown-menu collapsed">
+                <li><a href="#map">Ver no mapa</a></li>
+                <li><a href="#">Detalhes</a></li>
+              </ul>
+              <button type="button" class="list-group-item dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="content-default">
+                  <div class="col-md-2 col-xs-2">
+                    <!--<img src="/SizeApp/WebContent/imagens/estabelecimento/"-->
+                    <img class="img-responsive img-circle" src="https://imagesapt.apontador-assets.com/fit-in/640x480/1d0a509ec5b348b581e65431ef37a550/hospital-unimed.jpg"/>
+                  </div>
+                  <div class="col-md-6 col-xs-5" style="margin-top: 2.5%;">
+                    <h4>Hospital Unimed - Farol</h4>
+                    <h5>4.5<span class="glyphicon glyphicon-star" style="font-size: 8pt;"></span></h5>
+                  </div>
+                  <div class="col-md-4 col-xs-3" style="display: inline-flex; padding-top: 3%;">
+                    <a class="btn btn-default btn-link" onclick="showLocation(-9.6458271, -35.7199795)" href="#map" style=""><span class="glyphicon glyphicon-map-marker"></span> ver no mapa</a>
+                    <a class="btn btn-default btn-link" href="#" style="">detalhes</a>
+                  </div>
+                </div>
+                <div class="content-mobile">
+                  <div class="col-xs-8">
+                    <h4>Hospital Unimed - Farol</h4>
+                    <h5>4.5<span class="glyphicon glyphicon-star" style="font-size: 8pt;"></span></h5>
+                  </div>
+                  <div class="col-xs-4" style="display: inline-flex;">
+                    <a href="#map" >ver no mapa</a>
+                    <a href="#" >detalhes</a>
+                  </div>
+                </div>
+
+              </button>
+              <ul class="dropdown-menu collapsed">
+                <li><a href="#map">Ver no mapa</a></li>
+                <li><a href="#">Detalhes</a></li>
+              </ul>
+              <button type="button" class="list-group-item dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="content-default">
+                  <div class="col-md-2 col-xs-2">
+                    <!--<img src="/SizeApp/WebContent/imagens/estabelecimento/"-->
+                    <img class="img-responsive img-circle" src="https://imagesapt.apontador-assets.com/fit-in/640x480/1d0a509ec5b348b581e65431ef37a550/hospital-unimed.jpg"/>
+                  </div>
+                  <div class="col-md-6 col-xs-5" style="margin-top: 2.5%;">
+                    <h4>Hospital Unimed - Farol</h4>
+                    <h5>4.5<span class="glyphicon glyphicon-star" style="font-size: 8pt;"></span></h5>
+                  </div>
+                  <div class="col-md-4 col-xs-3" style="display: inline-flex; padding-top: 3%;">
+                    <a class="btn btn-default btn-link" onclick="showLocation(-9.6458271, -35.7199795)" href="#map" style=""><span class="glyphicon glyphicon-map-marker"></span> ver no mapa</a>
+                    <a class="btn btn-default btn-link" href="#" style="">detalhes</a>
+                  </div>
+                </div>
+                <div class="content-mobile">
+                  <div class="col-xs-8">
+                    <h4>Hospital Unimed - Farol</h4>
+                    <h5>4.5<span class="glyphicon glyphicon-star" style="font-size: 8pt;"></span></h5>
+                  </div>
+                  <div class="col-xs-4" style="display: inline-flex;">
+                    <a href="#map" >ver no mapa</a>
+                    <a href="#" >detalhes</a>
+                  </div>
+                </div>
+
+              </button>
+              <ul class="dropdown-menu collapsed">
+                <li><a href="#map">Ver no mapa</a></li>
+                <li><a href="#">Detalhes</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
 
-    </h:body>
-    <script src="http://localhost:8080/SizeApp/src/js/jquery.js" type="text/javascript"></script>
-    <script src="http://localhost:8080/SizeApp/src/js/bootstrap.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="http://localhost:8080/SizeApp/src/js/maps.js"></script>
+      </div>
+      <div id="map" style="z-index: 99; position: absolute; margin-top: -30px; margin-left: -15px;"></div>
+    </div>
+
+    <div class="container" style="margin-top: 400px;">
+      <div class="row col-md-10 col-md-offset-1">
+        <h1 style="margin-bottom: 20px;">Recomendadas</h1>
+        <div class="col-md-4">
+          <div class="panel panel-default establishment-panel">          
+            <div class="panel-header">
+              <h3>Hospital Unimed - Farol 4.2<span class="glyphicon glyphicon-star" style="font-size: 14pt;"></span></h3>
+            </div>
+            <div class="panel-body text-center">
+              <p>Avenida Fernandes Lima, Nº 24, Farol - <a href="https://maps.google.com/maps?q=loc:-9.64644625168335,-35.718955993652344%20(Unimed)">Como chegar?</a></p>            
+              <a href="callto:+558233332222"><h4><span class="glyphicon glyphicon-earphone" style="font-size: 12pt;"></span> 3333-2222</h4></a>
+              <a href="/estabelecimento/"><h3>Ver mais</h3></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="panel panel-default establishment-panel">          
+            <div class="panel-header">
+              <h3>Hospital Unimed - Farol 4.2<span class="glyphicon glyphicon-star" style="font-size: 14pt;"></span></h3>
+            </div>
+            <div class="panel-body text-center">
+              <p>Avenida Fernandes Lima, Nº 24, Farol - <a href="https://maps.google.com/maps?q=loc:-9.64644625168335,-35.718955993652344%20(Unimed)">Como chegar?</a></p>            
+              <a href="callto:+558233332222"><h4><span class="glyphicon glyphicon-earphone" style="font-size: 12pt;"></span> 3333-2222</h4></a>
+              <a href="/estabelecimento/"><h3>Ver mais</h3></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="panel panel-default establishment-panel">          
+            <div class="panel-header">
+              <h3>Hospital Unimed - Farol 4.2<span class="glyphicon glyphicon-star" style="font-size: 14pt;"></span></h3>
+            </div>
+            <div class="panel-body text-center">
+              <p>Avenida Fernandes Lima, Nº 24, Farol - <a href="https://maps.google.com/maps?q=loc:-9.64644625168335,-35.718955993652344%20(Unimed)">Como chegar?</a></p>            
+              <a href="callto:+558233332222"><h4><span class="glyphicon glyphicon-earphone" style="font-size: 12pt;"></span> 3333-2222</h4></a>
+              <a href="/estabelecimento/"><h3>Ver mais</h3></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </h:body>
+  <script src="/SizeApp/src/js/jquery.js" type="text/javascript"></script>
+  <script src="/SizeApp/src/js/bootstrap.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="/SizeApp/src/js/maps_users.js"></script>
+  <script type="text/javascript">
+                      $(document).ready(function () {
+                        $("#search-container").hover(function () {
+
+                          $(".results-field").stop(true, true).fadeToggle();
+                        })
+                      })
+  </script> 
 </html>

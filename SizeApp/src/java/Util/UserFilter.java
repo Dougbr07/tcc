@@ -2,7 +2,6 @@ package Util;
 
 import Model.UsuarioModel;
 import java.io.IOException;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -25,16 +24,41 @@ public class UserFilter implements Filter {
 
         HttpSession session = ((HttpServletRequest) request).getSession();
         UsuarioModel usuarioModel = (UsuarioModel) session.getAttribute("usuario");
-        if (usuarioModel != null) {
-            if (usuarioModel.getPerfil() == 2) {
-                ((HttpServletResponse) response).sendRedirect(session.getServletContext().getContextPath() + "/");
-            }
-            chain.doFilter(request, response);
-        }else{
-            ((HttpServletResponse) response).sendRedirect(session.getServletContext().getContextPath() + "/");
+        HttpServletRequest servRequest = (HttpServletRequest) request;
+        String url = servRequest.getRequestURL().toString();
+        if(url.toLowerCase().contains("src")){
+          chain.doFilter(request, response);
+          return;
         }
-        
-        
+        if (usuarioModel != null) {
+            if (usuarioModel.getPerfil() == 1) {
+                if (url.toLowerCase().contains("main")) {
+                    chain.doFilter(request, response);
+                }
+                if (url.toLowerCase().contains("webcontent")){
+                    chain.doFilter(request, response);
+                }else if (url.toLowerCase().contains("admin")){
+                    ((HttpServletResponse) response).sendRedirect(session.getServletContext().getContextPath() + "/main/");
+                }else if (!url.toLowerCase().contains("admin") && !url.toLowerCase().contains("main")){
+                    ((HttpServletResponse) response).sendRedirect(session.getServletContext().getContextPath() + "/main/");
+                }
+            }
+            if (usuarioModel.getPerfil() == 2) {
+                if (url.toLowerCase().contains("admin")) {
+                    chain.doFilter(request, response);
+                } else if (url.toLowerCase().contains("main")) {
+                    ((HttpServletResponse) response).sendRedirect(session.getServletContext().getContextPath() + "/admin/");
+                } else {
+                    chain.doFilter(request, response);
+                }
+            }
+        } else {
+            if (url.toLowerCase().contains("admin") || url.toLowerCase().contains("main")) {
+                ((HttpServletResponse) response).sendRedirect(session.getServletContext().getContextPath());
+            } else {
+                chain.doFilter(request, response);
+            }
+        }
     }
 
     public void init(FilterConfig arg0) throws ServletException {

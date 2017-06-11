@@ -89,7 +89,7 @@ public class UsuarioModel {
      * @param email the email to set
      */
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email.toLowerCase();
     }
 
     public int getPerfil() {

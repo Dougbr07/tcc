@@ -114,6 +114,11 @@ public class EstabelecimentoDAO {
         }
         return false;
     }
+    public EstabelecimentoModel buscar(int id){
+      EstabelecimentoModel estabelecimento = new EstabelecimentoModel();
+      String SQL = "SELECT * from estabelecimento";
+      return estabelecimento;
+    }
 
     public HashMap<Integer, EstabelecimentoModel> show(EstabelecimentoModel object) throws SQLException {
         int index = 1;

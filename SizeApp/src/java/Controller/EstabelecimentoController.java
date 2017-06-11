@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import Dao.EstabelecimentoDAO;
@@ -10,10 +5,6 @@ import Model.EstabelecimentoModel;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-/**
- *
- * @author Nilson França
- */
 @ManagedBean(name = "EstabelecimentoController")
 @SessionScoped
 public class EstabelecimentoController{
@@ -42,5 +33,10 @@ public class EstabelecimentoController{
     }
     return resultado;
 
+  }
+  public void loadEstabelecimento(){
+    if(estabelecimentoModel != null){
+      estabelecimentoModel.getIdEstabelecimento();
+    }
   }
 }
