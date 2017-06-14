@@ -67,106 +67,193 @@
         transform: translateY(-50%);
       }
       #map{
-
-        height: 200px;
+        width: 100%;
+        height: 250px;
+      }
+      .map-container{
+        position: absolute !important;
+        margin-top: 20%;
+        margin-left: -15px;        
+      }
+      .secnd-session{
+        margin-top: 200px;
       }
     </style>
   </h:head>
-  <h:body style="background-color:#ddd;" onload="">
+  <h:body style="background-color:#ddd;" onload="setPin(-9.64644625168335, -35.718955993652344, 'Hospital Unimed - Farol')">
     <ui:include src="../src/models/navbar.xhtml" />
-    <div class="container content">      
+    <div class="container content" >      
       <div class="row vertical-center">
-        <div class="col-md-10 col-xs-12 col-md-offset-1 col-sm-10 col-sm-offset-1" style="background-color:#fff;">
-          <div class="col-md-4 col-xs-12 col-sm-4 col-sm-offset-1 col-md-offset-1 unit-image">
-            <img class=" img-responsive center-block" src="https://imagesapt.apontador-assets.com/fit-in/640x480/1d0a509ec5b348b581e65431ef37a550/hospital-unimed.jpg" />      
-          </div>
-          <div class="col-md-6 col-xs-12 col-sm-6 header-title">
-            <h1>Hospital Unimed - Farol</h1>          
-            <!--<h2>4.2<span class="glyphicon glyphicon-star" style="font-size: 14pt;"></span></h2>-->
-          </div>
-          <div class="enterprise-info col-md-6 col-xs-12 col-sm-6">
-            <p>Avenida Fernandes Lima, Nº 24, Farol - <a href="https://maps.google.com/maps?q=loc:-9.64644625168335,-35.718955993652344%20(Unimed)">Como chegar?</a></p>
-            <a href="callto:+558233332222"><h3><span class="glyphicon glyphicon-earphone" style="font-size: 16pt;"></span> 3333-2222</h3></a>
-          </div>
-          <div class="row col-md-12 col-sm-12 col-xs-12 vertical-adjust">
-            <div class="col-md-10 col-md-offset-1">
-              <div id="map" class="col-md-12"></div>
+        <div class="row">
+          <div class="col-md-10 col-xs-12 col-md-offset-1 col-sm-10 col-sm-offset-1" style="background-color:#fff;">
+            <div class="col-md-4 col-xs-12 col-sm-4 col-sm-offset-1 col-md-offset-1 unit-image">
+              <img class=" img-responsive center-block" src="https://imagesapt.apontador-assets.com/fit-in/640x480/1d0a509ec5b348b581e65431ef37a550/hospital-unimed.jpg" />      
             </div>
-
-          </div>
-          <div class="row col-md-10 col-md-offset-1">
-            <div class="panel panel-default col-md-5 col-xs-12" style="margin-top: 4%;">
-              <div class="col-md-12 col-xs-12 col-sm-12 text-center">
-                <h3>Média Geral</h3>
-                <h2>4.2<span class="glyphicon glyphicon-star" style="font-size: 14pt;"></span></h2>
+            <div class="col-md-6 col-xs-12 col-sm-6 header-title">
+              <h1>Hospital Unimed - Farol</h1>          
+              <!--<h2>4.2<span class="glyphicon glyphicon-star" style="font-size: 14pt;"></span></h2>-->
+            </div>
+            <div class="enterprise-info col-md-6 col-xs-12 col-sm-6">
+              <p>Avenida Fernandes Lima, Nº 24, Farol - <a href="https://maps.google.com/maps?q=loc:-9.64644625168335,-35.718955993652344%20(Unimed)">Como chegar?</a></p>
+              <a href="callto:+558233332222"><h3><span class="glyphicon glyphicon-earphone" style="font-size: 16pt;"></span> 3333-2222</h3></a>
+            </div>
+            <div class="col-md-12 map-container">
+              <div id="map"></div>
+            </div>
+            <div class="row col-md-10 col-md-offset-1 secnd-session">
+              <div class="row">
+                <div class="col-md-6">
+                  <h3>Especialidades</h3>
+                  <ul class="list-group">
+                    <li class="list-group-item">Cardiologia</li>
+                    <li class="list-group-item">Neurologia</li>
+                    <li class="list-group-item">Pediatria</li>
+                    <li class="list-group-item">Otorrinolarigologia</li>
+                    <li class="list-group-item">Endocrinologia</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <h3>Planos Conveniados</h3>
+                  <ul class="list-group">
+                    <li class="list-group-item">Unimed</li>
+                  </ul>
+                </div>
               </div>
-              <div class="col-md-12 col-xs-12 col-sm-12">
-                <p>4.2<span class="glyphicon glyphicon-star" ></span> - atendimento inicial</p>
-                <p>4.2<span class="glyphicon glyphicon-star" ></span> - higienização</p>
-                <p>4.2<span class="glyphicon glyphicon-star" ></span> - equipamentos</p>
-                <p>4.2<span class="glyphicon glyphicon-star" ></span> - tempo de espera</p>
+              <div class="panel panel-default col-md-5 col-xs-12" style="margin-top: 4%;">
+                <div class="col-md-12 col-xs-12 col-sm-12 text-center">
+                  <h3>Média Geral</h3>
+                  <h2>4.2<span class="glyphicon glyphicon-star" style="font-size: 14pt;"></span></h2>
+                </div>
+                <div class="col-md-12 col-xs-12 col-sm-12">
+                  <p>4.2<span class="glyphicon glyphicon-star" ></span> - atendimento inicial</p>
+                  <p>4.2<span class="glyphicon glyphicon-star" ></span> - higienização</p>
+                  <p>4.2<span class="glyphicon glyphicon-star" ></span> - equipamentos</p>
+                  <p>4.2<span class="glyphicon glyphicon-star" ></span> - tempo de espera</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-md-offset-1 col-xs-12 col-sm-12 ">
+                <table class="table table-responsive table-striped table-condensed table-bordered">
+                  <tr>
+                    <th>DIA</th>
+                    <th>ABRE</th>
+                    <th>FECHA</th>
+                  </tr>
+                  <tr>
+                    <th>Domingo</th>
+                    <td>08:00</td>
+                    <td>18:00</td>
+                  </tr>
+                  <tr>
+                    <th>Segunda</th>
+                    <td>08:00</td>
+                    <td>18:00</td>
+                  </tr>
+                  <tr>
+                    <th>Terça</th>
+                    <td>08:00</td>
+                    <td>18:00</td>
+                  </tr>
+                  <tr>
+                    <th>Quarta</th>
+                    <td>08:00</td>
+                    <td>18:00</td>
+                  </tr>
+                  <tr>
+                    <th>Quinta</th>
+                    <td>08:00</td>
+                    <td>18:00</td>
+                  </tr>
+                  <tr>
+                    <th>Sexta</th>
+                    <td>08:00</td>
+                    <td>18:00</td>
+                  </tr>
+                  <tr>
+                    <th>Sábado</th>
+                    <td>08:00</td>
+                    <td>18:00</td>
+                  </tr>
+
+                </table>
               </div>
             </div>
-            <div class="col-md-6 col-md-offset-1 col-xs-12 col-sm-12 ">
-              <table class="table table-responsive table-striped table-condensed table-bordered">
-                <tr>
-                  <th>DIA</th>
-                  <th>ABRE</th>
-                  <th>FECHA</th>
-                </tr>
-                <tr>
-                  <th>Domingo</th>
-                  <td>08:00</td>
-                  <td>18:00</td>
-                </tr>
-                <tr>
-                  <th>Segunda</th>
-                  <td>08:00</td>
-                  <td>18:00</td>
-                </tr>
-                <tr>
-                  <th>Terça</th>
-                  <td>08:00</td>
-                  <td>18:00</td>
-                </tr>
-                <tr>
-                  <th>Quarta</th>
-                  <td>08:00</td>
-                  <td>18:00</td>
-                </tr>
-                <tr>
-                  <th>Quinta</th>
-                  <td>08:00</td>
-                  <td>18:00</td>
-                </tr>
-                <tr>
-                  <th>Sexta</th>
-                  <td>08:00</td>
-                  <td>18:00</td>
-                </tr>
-                <tr>
-                  <th>Sábado</th>
-                  <td>08:00</td>
-                  <td>18:00</td>
-                </tr>
+            <div class="row col-md-10 col-xs-12 col-sm-12 col-md-offset-1">              
+              <h3>Conte-nos sua experiência...</h3>
+              <div class="well text-center col-md-12">
+                <div class="col-md-3">
+                  <p>atendimento</p>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                </div>
+                <div class="col-md-3">
+                  <p>Higienização</p>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                </div>
+                <div class="col-md-3">
+                  <p>equipamentos</p>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                </div>
+                <div class="col-md-3">
+                  <p>tempo de espera</p>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                </div>
+                <div class="col-md-12">
+                  <h3>Comentário</h3>
+                  <textarea class="form-control" rows="3" placeholder="Escreva aqui a sua experiência..."></textarea>
+                </div>
+                <button class="btn btn-default btn-lg" style="margin-top: 10px;">Enviar</button>
+              </div>
+              <h3>Avaliações</h3>
+              <div class="evaluation col-md-12 col-xs-12 panel panel-default" style="padding:10px;">
+                <div class="col-md-2 col-xs-12 logo text-center">
+                  <img class="img-responsive col-md-12 col-sm-12 col-xs-4" src="../WebContent/imagens/usuario/avatar.png" alt="José Francisco"/>
+                  <label class="col-md-12 col-xs-8">José Francisco</label>
+                </div>
 
-              </table>
-            </div>
-          </div>
-          <div class="row col-md-10 col-xs-12 col-sm-12 col-md-offset-1">
-            <h3>Avaliações</h3>
-            <div class="evaluation col-md-12 col-xs-12 panel panel-default" style="padding:10px;">
-              <div class="col-md-2 col-xs-12 logo text-center">
-                <img class="img-responsive col-md-12 col-sm-12 col-xs-4" src="../WebContent/imagens/usuario/avatar.png" alt="José Francisco"/>
-                <label class="col-md-12 col-xs-8">José Francisco</label>
+                <div class="col-md-10 col-xs-12 comment panel panel-default" style="padding:10px;">
+                  <p class="col-xs-12 text-center">4.5<span class="glyphicon glyphicon-star" ></span> - Avaliação</p>
+                  <p class="text-justify">Adorei o atendimento! Profissionais super atenciosos e competentes, fora o ambiente agradável. Tudo perfeito! Só o tempo de espera que deixa a desejar.</p>
+                </div>
+              </div>
+              <div class="evaluation col-md-12 col-xs-12 panel panel-default" style="padding:10px;">
+                <div class="col-md-2 col-xs-12 logo text-center">
+                  <img class="img-responsive col-md-12 col-sm-12 col-xs-4" src="../WebContent/imagens/usuario/avatar.png" alt="José Francisco"/>
+                  <label class="col-md-12 col-xs-8">José Francisco</label>
+                </div>
+
+                <div class="col-md-10 col-xs-12 comment panel panel-default" style="padding:10px;">
+                  <p class="col-xs-12 text-center">4.5<span class="glyphicon glyphicon-star" ></span> - Avaliação</p>
+                  <p class="text-justify">Adorei o atendimento! Profissionais super atenciosos e competentes, fora o ambiente agradável. Tudo perfeito! Só o tempo de espera que deixa a desejar.</p>
+                </div>
+              </div>
+              <div class="evaluation col-md-12 col-xs-12 panel panel-default" style="padding:10px;">
+                <div class="col-md-2 col-xs-12 logo text-center">
+                  <img class="img-responsive col-md-12 col-sm-12 col-xs-4" src="../WebContent/imagens/usuario/avatar.png" alt="José Francisco"/>
+                  <label class="col-md-12 col-xs-8">José Francisco</label>
+                </div>
+
+                <div class="col-md-10 col-xs-12 comment panel panel-default" style="padding:10px;">
+                  <p class="col-xs-12 text-center">4.5<span class="glyphicon glyphicon-star" ></span> - Avaliação</p>
+                  <p class="text-justify">Adorei o atendimento! Profissionais super atenciosos e competentes, fora o ambiente agradável. Tudo perfeito! Só o tempo de espera que deixa a desejar.</p>
+                </div>
               </div>
 
-              <div class="col-md-10 col-xs-12 comment panel panel-default" style="padding:10px;">
-                <p class="col-xs-12 text-center">4.2<span class="glyphicon glyphicon-star" ></span> - Avaliação</p>
-                <p class="text-justify">lorem ipsum dolor sit amet askdj kasdjklasjk asdlakdj alsjd alsdj asldj asldkja sldka jsdlkaj sdiasduqoiduas dj lkdajs dkajs.dja skdj asldkjas dlkadj aksndasdjkahs djahs d</p>
-              </div>
             </div>
-
           </div>
         </div>
       </div>

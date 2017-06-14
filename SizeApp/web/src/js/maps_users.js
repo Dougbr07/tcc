@@ -40,6 +40,12 @@ function showLocation(x, y, title, contentString) {
   infowindow.open(map, marker);
 });
 }
+function setPin(x, y, title) {
+  var location = {lat: x, lng: y};
+  addMarker(location, map, title);
+  map.setZoom(17);
+  map.panTo(location);
+}
 var drawingManager = new google.maps.drawing.DrawingManager();
 drawingManager.setMap(map);
 //google.maps.event.addDomListener(window, 'load', initMap);

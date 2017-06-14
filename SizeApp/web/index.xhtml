@@ -90,6 +90,13 @@
         padding: 0px !important;
         height: 350px;
       }
+      .advanced-search{
+        position: absolute;
+        top: 20%;
+        right: 2%;
+        z-index: 100;
+      }
+
     </style>
   </h:head>
   <h:body onload='initMap();'>
@@ -107,9 +114,9 @@
     <div class="container-fluid">
       <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 search-container" id="search-container">
         <div class="input-group" style="z-index: 100; position: absolute;">
-
           <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search"></span></span>
-          <input type="text" class="search-bar form-control" placeholder="Pesquisar..." aria-describedby="basic-addon1"><a href="/SizeApp/pesquisa">avançado</a></input>
+          <input type="text" class="search-bar form-control" placeholder="Pesquisar..." aria-describedby="basic-addon1"/>
+          <a class="advanced-search" href="/SizeApp/pesquisa">avançada</a>
           <div class="results-field" style="position: absolute; z-index: 100; width: 100%; margin-top: 35px; margin-left: -40px; padding: 1px; max-height: 320px; overflow-y: scroll;">
             <div class="list-group btn-group">
               <button type="button" class="list-group-item dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -137,7 +144,6 @@
                     <a href="#" >detalhes</a>
                   </div>
                 </div>
-
               </button>
               <ul class="dropdown-menu">
                 <li><a href="#map">Ver no mapa</a></li>
