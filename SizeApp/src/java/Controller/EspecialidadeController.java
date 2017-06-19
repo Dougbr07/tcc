@@ -7,6 +7,7 @@ package Controller;
 
 import Dao.EspecialidadeDAO;
 import Model.EspecialidadeModel;
+import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -43,5 +44,16 @@ public class EspecialidadeController {
         return resultado;
 
     }
+    
+    public ArrayList<EspecialidadeModel> showAll(){
+      ArrayList<EspecialidadeModel> resultado = new ArrayList<>();
+      try {
+      resultado = this.especialidadeDAO.show();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+      
+      return resultado;
+  }
 
 }

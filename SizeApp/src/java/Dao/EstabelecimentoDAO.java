@@ -1,5 +1,6 @@
 package Dao;
 
+import Model.EspecialidadeModel;
 import Model.EstabelecimentoModel;
 import Util.Conexao;
 import Util.FileUpload;
@@ -8,7 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.Part;
 
 /**
@@ -37,7 +41,8 @@ public class EstabelecimentoDAO {
         }
         return id;
     }
-
+    
+    
     public boolean insert(EstabelecimentoModel object) throws SQLException, IOException {
         String SQL;
         String PATH = "WEB-INF\\imagens\\estabelecimento";
@@ -65,7 +70,7 @@ public class EstabelecimentoDAO {
                 + "VALUES \n"
                 + "(\n"
                 + "    ?,?,?,?,?,?,?,(SELECT currval('estabelecimento_idestabelecimento_seq'))\n"
-                + ")";
+                + ");";
         PreparedStatement stmt = connection.prepareStatement(SQL);
         stmt.setString(1, object.getNome());
         stmt.setString(2, object.getEndereco());
@@ -83,10 +88,12 @@ public class EstabelecimentoDAO {
         stmt.setString(14, object.getQuiFechamento());
         stmt.setString(15, object.getSexFechamento());
         stmt.setString(16, object.getSabFechamento());
+        
 
         if (stmt.executeUpdate() > 0 ) {
+            insertEspecialidades(object.getEspecialidade());
+            insertPlanos(object.getPlanos());
             System.out.println("Cadastrou com sucesso!");
-
             FileUpload upload = new FileUpload();
             upload.uploadFile(object.getFile1(), "estabelecimento", ultimoId() + ".png");
 
@@ -98,6 +105,49 @@ public class EstabelecimentoDAO {
 
     }
 
+    
+    public void insertEspecialidades(String[] object) throws SQLException, IOException {
+    String SQL;
+    
+        int idEstabelecimento = ultimoId();
+        
+        
+        for(int i = 0 ; i < object.length ; i++){
+                        
+        SQL = "INSERT INTO public.tem(idespecialidade,idestabelecimento) values (?,?)";
+                PreparedStatement stmt = connection.prepareStatement(SQL); 
+                stmt.setInt(1, Integer.parseInt(object[i]));
+                stmt.setInt(2, idEstabelecimento);
+         
+        stmt.executeUpdate();
+        
+           
+          
+        }
+       
+    }
+    
+        public void insertPlanos(String[] object) throws SQLException, IOException {
+    String SQL;
+    
+        int idEstabelecimento = ultimoId();
+        
+        
+        for(int i = 0 ; i < object.length ; i++){
+                        
+        SQL = "INSERT INTO public.aceita(idplano,idestabelecimento) values (?,?)";
+                PreparedStatement stmt = connection.prepareStatement(SQL); 
+                stmt.setInt(1, Integer.parseInt(object[i]));
+                stmt.setInt(2, idEstabelecimento);
+         
+        stmt.executeUpdate();
+        
+           
+          
+        }
+       
+    }
+    
     public boolean remove(EstabelecimentoModel object) {
 
         try {

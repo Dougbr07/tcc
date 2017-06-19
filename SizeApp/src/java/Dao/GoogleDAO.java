@@ -23,9 +23,9 @@ public class GoogleDAO {
         NetHttpTransport transport = new NetHttpTransport();
         GsonFactory jsonFactory = new GsonFactory();
         String ID_TOKEN_STRING = object.getIdToken();
-        if(ID_TOKEN_STRING.length() != 1170){
-            return false;
-        }
+        //if(ID_TOKEN_STRING.length() != 1170){
+         //   return false;
+        //}
         GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
                 .setAudience(Collections.singletonList("377306572429-fdovga51la59ekd7n1qjsqltl0sjskod.apps.googleusercontent.com"))
                 // Or, if multiple clients access the backend:

@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import javax.servlet.http.Part;
 
 /**
@@ -7,6 +8,8 @@ import javax.servlet.http.Part;
  * @author Matheus Montenegro
  */
 public class EstabelecimentoModel {
+
+  
     private int IdEstabelecimento;
     private String nome;
     private int status;
@@ -30,7 +33,37 @@ public class EstabelecimentoModel {
     private String sabAbertura;
     private String sabFechamento;
     private Part file1;
+    private String[] especialidade;
+    private String[] planos;
     
+    
+    /**
+     * @return the especialidade
+     */
+    public String[] getEspecialidade() {
+        return especialidade;
+    }
+
+    /**
+     * @param especialidade the especialidade to set
+     */
+    public void setEspecialidade(String[] especialidade) {
+        this.especialidade = especialidade;
+    }
+
+    /**
+     * @return the planos
+     */
+    public String[] getPlanos() {
+        return planos;
+    }
+
+    /**
+     * @param planos the planos to set
+     */
+    public void setPlanos(String[] planos) {
+        this.planos = planos;
+    }
     public Part getFile1() {
         return file1;
     }

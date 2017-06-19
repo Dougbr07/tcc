@@ -8,6 +8,7 @@ package Controller;
 import Dao.PlanoDAO;
 import Model.EstabelecimentoModel;
 import Model.PlanoModel;
+import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -43,6 +44,17 @@ public class PlanoController {
     }
     return resultado;
 
+  }
+  
+  public ArrayList<PlanoModel> showAll(){
+      ArrayList<PlanoModel> resultado = new ArrayList<>();
+      try {
+      resultado = this.planoDAO.show();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+      
+      return resultado;
   }
     
     

@@ -12,7 +12,9 @@ import Model.UsuarioModel;
 import Util.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -69,5 +71,34 @@ public class EspecialidadeDAO {
          }
          return false;
     }
+     
+           public ArrayList<EspecialidadeModel> show() {
     
+        ArrayList<EspecialidadeModel> especialidades = new ArrayList<>();
+
+            try{
+
+                String sql = "select * from especialidade";
+                PreparedStatement prep = connection.prepareStatement(sql);
+                ResultSet rs = prep.executeQuery();
+
+                while(rs.next()){
+
+                    EspecialidadeModel especialidade = new EspecialidadeModel();
+                    especialidade.setNome(rs.getString("nome"));
+                    especialidade.setIdEspecialidade(rs.getInt("idespecialidade"));
+                    especialidade.setStatus(rs.getInt("status"));
+                    especialidades.add(especialidade);
+
+                }
+
+
+            } catch (SQLException ex) {
+                System.out.println("Erro" + ex);
+            }
+
+        return especialidades;
+        
+        }
+      
 }
