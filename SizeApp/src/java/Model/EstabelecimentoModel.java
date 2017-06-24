@@ -9,10 +9,10 @@ import javax.servlet.http.Part;
  */
 public class EstabelecimentoModel {
 
-  
     private int IdEstabelecimento;
     private String nome;
     private int status;
+    private String telefone;
     private String endereco;
     private String latitude;
     private String longitude;
@@ -68,185 +68,195 @@ public class EstabelecimentoModel {
         return file1;
     }
 
-    public void setFile1(Part file1) {
-        this.file1 = file1;
-    }
-   
+  
+  
 
-    public int getIdEstabelecimento() {
-        return IdEstabelecimento;
-    }
+  public void setFile1(Part file1) {
+    this.file1 = file1;
+  }
 
-    public void setIdEstabelecimento(int IdEstabelecimento) {
-        this.IdEstabelecimento = IdEstabelecimento;
-    }
+  public int getIdEstabelecimento() {
+    return IdEstabelecimento;
+  }
 
-    public String getNome() {
-        return nome;
-    }
+  public void setIdEstabelecimento(int IdEstabelecimento) {
+    this.IdEstabelecimento = IdEstabelecimento;
+  }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+  public String getNome() {
+    return nome;
+  }
 
-    public int getStatus() {
-        return status;
-    }
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+  public int getStatus() {
+    return status;
+  }
 
-    public String getEndereco() {
-        return endereco;
-    }
+  public void setStatus(int status) {
+    this.status = status;
+  }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+  public String getTelefone() {
+    return telefone;
+  }
 
-    public String getLatitude() {
-        return latitude;
-    }
+  public void setTelefone(String telefone) {
+    this.telefone = telefone;
+  }
 
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
+  public String getEndereco() {
+    return endereco;
+  }
 
-    public String getLongitude() {
-        return longitude;
-    }
+  public void setEndereco(String endereco) {
+    this.endereco = endereco;
+  }
 
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
+  public String getLatitude() {
+    return latitude;
+  }
 
-    public String getFoto() {
-        return foto;
-    }
+  public void setLatitude(String latitude) {
+    this.latitude = latitude;
+  }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
+  public String getLongitude() {
+    return longitude;
+  }
 
-    public double getNotaTotal() {
-        return notaTotal;
-    }
+  public void setLongitude(String longitude) {
+    this.longitude = longitude;
+  }
 
-    public void setNotaTotal(double notaTotal) {
-        this.notaTotal = notaTotal;
-    }
+  public String getFoto() {
+    return foto;
+  }
 
-    public String getDomAbertura() {
-        return domAbertura;
-    }
+  public void setFoto(String foto) {
+    this.foto = foto;
+  }
 
-    public void setDomAbertura(String domAbertura) {
-        this.domAbertura = domAbertura;
-    }
+  public double getNotaTotal() {
+    return notaTotal;
+  }
 
-    public String getDomFechamento() {
-        return domFechamento;
-    }
+  public void setNotaTotal(double notaTotal) {
+    this.notaTotal = notaTotal;
+  }
 
-    public void setDomFechamento(String domFechamento) {
-        this.domFechamento = domFechamento;
-    }
+  public String getDomAbertura() {
+    return domAbertura;
+  }
 
-    public String getSegAbertura() {
-        return segAbertura;
-    }
+  public void setDomAbertura(String domAbertura) {
+    this.domAbertura = domAbertura;
+  }
 
-    public void setSegAbertura(String segAbertura) {
-        this.segAbertura = segAbertura;
-    }
+  public String getDomFechamento() {
+    return domFechamento;
+  }
 
-    public String getSegFechamento() {
-        return segFechamento;
-    }
+  public void setDomFechamento(String domFechamento) {
+    this.domFechamento = domFechamento;
+  }
 
-    public void setSegFechamento(String segFechamento) {
-        this.segFechamento = segFechamento;
-    }
+  public String getSegAbertura() {
+    return segAbertura;
+  }
 
-    public String getTerAbertura() {
-        return terAbertura;
-    }
+  public void setSegAbertura(String segAbertura) {
+    this.segAbertura = segAbertura;
+  }
 
-    public void setTerAbertura(String terAbertura) {
-        this.terAbertura = terAbertura;
-    }
+  public String getSegFechamento() {
+    return segFechamento;
+  }
 
-    public String getTerFechamento() {
-        return terFechamento;
-    }
+  public void setSegFechamento(String segFechamento) {
+    this.segFechamento = segFechamento;
+  }
 
-    public void setTerFechamento(String terFechamento) {
-        this.terFechamento = terFechamento;
-    }
+  public String getTerAbertura() {
+    return terAbertura;
+  }
 
-    public String getQuaAbertura() {
-        return quaAbertura;
-    }
+  public void setTerAbertura(String terAbertura) {
+    this.terAbertura = terAbertura;
+  }
 
-    public void setQuaAbertura(String quaAbertura) {
-        this.quaAbertura = quaAbertura;
-    }
+  public String getTerFechamento() {
+    return terFechamento;
+  }
 
-    public String getQuaFechamento() {
-        return quaFechamento;
-    }
+  public void setTerFechamento(String terFechamento) {
+    this.terFechamento = terFechamento;
+  }
 
-    public void setQuaFechamento(String quaFechamento) {
-        this.quaFechamento = quaFechamento;
-    }
+  public String getQuaAbertura() {
+    return quaAbertura;
+  }
 
-    public String getQuiAbertura() {
-        return quiAbertura;
-    }
+  public void setQuaAbertura(String quaAbertura) {
+    this.quaAbertura = quaAbertura;
+  }
 
-    public void setQuiAbertura(String quiAbertura) {
-        this.quiAbertura = quiAbertura;
-    }
+  public String getQuaFechamento() {
+    return quaFechamento;
+  }
 
-    public String getQuiFechamento() {
-        return quiFechamento;
-    }
+  public void setQuaFechamento(String quaFechamento) {
+    this.quaFechamento = quaFechamento;
+  }
 
-    public void setQuiFechamento(String quiFechamento) {
-        this.quiFechamento = quiFechamento;
-    }
+  public String getQuiAbertura() {
+    return quiAbertura;
+  }
 
-    public String getSexAbertura() {
-        return sexAbertura;
-    }
+  public void setQuiAbertura(String quiAbertura) {
+    this.quiAbertura = quiAbertura;
+  }
 
-    public void setSexAbertura(String sexAbertura) {
-        this.sexAbertura = sexAbertura;
-    }
+  public String getQuiFechamento() {
+    return quiFechamento;
+  }
 
-    public String getSexFechamento() {
-        return sexFechamento;
-    }
+  public void setQuiFechamento(String quiFechamento) {
+    this.quiFechamento = quiFechamento;
+  }
 
-    public void setSexFechamento(String sexFechamento) {
-        this.sexFechamento = sexFechamento;
-    }
+  public String getSexAbertura() {
+    return sexAbertura;
+  }
 
-    public String getSabAbertura() {
-        return sabAbertura;
-    }
+  public void setSexAbertura(String sexAbertura) {
+    this.sexAbertura = sexAbertura;
+  }
 
-    public void setSabAbertura(String sabAbertura) {
-        this.sabAbertura = sabAbertura;
-    }
+  public String getSexFechamento() {
+    return sexFechamento;
+  }
 
-    public String getSabFechamento() {
-        return sabFechamento;
-    }
+  public void setSexFechamento(String sexFechamento) {
+    this.sexFechamento = sexFechamento;
+  }
 
-    public void setSabFechamento(String sabFechamento) {
-        this.sabFechamento = sabFechamento;
-    }
+  public String getSabAbertura() {
+    return sabAbertura;
+  }
+
+  public void setSabAbertura(String sabAbertura) {
+    this.sabAbertura = sabAbertura;
+  }
+
+  public String getSabFechamento() {
+    return sabFechamento;
+  }
+
+  public void setSabFechamento(String sabFechamento) {
+    this.sabFechamento = sabFechamento;
+  }
 
 }

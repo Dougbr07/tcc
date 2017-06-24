@@ -23,82 +23,78 @@ import java.util.logging.Logger;
  * @author Nilson França
  */
 public class EspecialidadeDAO {
-    
-    private Connection connection;
-    
-    
-    public EspecialidadeDAO() {
-        connection = Conexao.getConnection();
+
+  private Connection connection;
+
+  public EspecialidadeDAO() {
+    connection = Conexao.getConnection();
+  }
+
+  public boolean insert(EspecialidadeModel object) {
+
+    try {
+
+      String sql = "insert into especialidade (nome) values(?)";
+
+      PreparedStatement prep = connection.prepareStatement(sql);
+      prep.setString(1, object.getNome());
+      prep.executeUpdate();
+      return true;
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+      System.out.println("Oops! Ocorreu um erro inesperado!");
+    } catch (Exception ex) {
+      Logger.getLogger(UsuarioModel.class.getName()).log(Level.SEVERE, null, ex);
     }
-    
-    
-    public boolean insert (EspecialidadeModel object) {
-    
-      try{
-           
-         String sql = "insert into especialidade (nome) values(?)";
-         
-         PreparedStatement prep = connection.prepareStatement(sql);
-         prep.setString(1, object.getNome());
-         prep.executeUpdate();
-         return true;
 
+    return false;
 
-         }catch(SQLException e){
-                e.printStackTrace();
-                 System.out.println("Oops! Ocorreu um erro inesperado!");
-         } catch (Exception ex) {
-            Logger.getLogger(UsuarioModel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-     return false;    
-        
+  }
+
+  public boolean remove(EstabelecimentoModel object) {
+
+    try {
+
+      String sql = "UPDATe especialidade set status = 0 where id = ?";
+      PreparedStatement prep = connection.prepareStatement(sql);
+      prep.setInt(1, object.getIdEstabelecimento());
+      prep.executeUpdate();
+      return true;
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+      System.out.println("Oops! Ocorreu um erro inesperado!");
     }
-           public boolean remove (EstabelecimentoModel object){
-    
-         try{
+    return false;
+  }
 
-       
-         String sql = "UPDATe especialidade set status = 0 where id = ?";
-         PreparedStatement prep = connection.prepareStatement(sql);
-         prep.setInt(1, object.getIdEstabelecimento());
-         prep.executeUpdate();
-         return true;
+  public ArrayList<EspecialidadeModel> show() {
 
-         }catch(SQLException e){
-                e.printStackTrace();
-                 System.out.println("Oops! Ocorreu um erro inesperado!");
-         }
-         return false;
+    ArrayList<EspecialidadeModel> especialidades = new ArrayList<>();
+
+    try {
+
+      String sql = "select * from especialidade";
+      PreparedStatement prep = connection.prepareStatement(sql);
+      ResultSet rs = prep.executeQuery();
+
+      while (rs.next()) {
+
+        EspecialidadeModel especialidade = new EspecialidadeModel();
+        especialidade.setNome(rs.getString("nome"));
+        especialidade.setIdEspecialidade(rs.getInt("idespecialidade"));
+        especialidade.setStatus(rs.getInt("status"));
+        especialidades.add(especialidade);
+
+      }
+
+    } catch (SQLException ex) {
+      System.out.println("Erro" + ex);
     }
-     
-           public ArrayList<EspecialidadeModel> show() {
-    
-        ArrayList<EspecialidadeModel> especialidades = new ArrayList<>();
 
-            try{
+    return especialidades;
 
-                String sql = "select * from especialidade";
-                PreparedStatement prep = connection.prepareStatement(sql);
-                ResultSet rs = prep.executeQuery();
+  }
 
-                while(rs.next()){
-
-                    EspecialidadeModel especialidade = new EspecialidadeModel();
-                    especialidade.setNome(rs.getString("nome"));
-                    especialidade.setIdEspecialidade(rs.getInt("idespecialidade"));
-                    especialidade.setStatus(rs.getInt("status"));
-                    especialidades.add(especialidade);
-
-                }
-
-
-            } catch (SQLException ex) {
-                System.out.println("Erro" + ex);
-            }
-
-        return especialidades;
-        
-        }
-      
 }

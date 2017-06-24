@@ -28,11 +28,27 @@ function addMarker(location, map, title) {
     title: title
   });
 }
-function showLocation(x, y, title, contentString) {
+function showLocation(x, y, title, endereco, telefone, foto, nota) {
   var location = {lat: x, lng: y};
   addMarker(location, map, title);
   map.setZoom(17);
   map.panTo(location);
+  var notaNova = nota.toFixed(1);
+  var contentString = '<div class="container-fluid">'+
+      '<div class="col-md-3">'+
+        '<img style="width: 100%;" class="img-responsive img-circle" src="/SizeApp/WebContent/imagens/estabelecimento/'+foto+'"/>'+
+      '</div>'+
+      '<div class="col-md-9">'+
+        '<div class="col-md-8">'+
+          '<h2>'+title+'</h2>'+
+          '<p>'+endereco+'</p>'+
+          '<a href="callto:+5582'+telefone+'"><h4><span class="glyphicon glyphicon-earphone" style="font-size: 12pt;"></span> '+telefone+'</h4></a>'+
+        '</div>'+
+        '<div class="col-md-4">'+
+          '<h3>'+notaNova+'<span class="glyphicon glyphicon-star" style="font-size: 14pt;"></span></h3>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
   infowindow = new google.maps.InfoWindow({
     content: contentString
   });
