@@ -36,7 +36,7 @@ function showLocation(x, y, title, endereco, telefone, foto, nota) {
   var notaNova = nota.toFixed(1);
   var contentString = '<div class="container-fluid">'+
       '<div class="col-md-3">'+
-        '<img style="width: 100%;" class="img-responsive img-circle" src="/SizeApp/WebContent/imagens/estabelecimento/'+foto+'"/>'+
+        '<img style="width: 100%;" class="img-responsive img-circle" src="'+foto+'"/>'+
       '</div>'+
       '<div class="col-md-9">'+
         '<div class="col-md-8">'+
