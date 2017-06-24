@@ -45,7 +45,7 @@ public class EstabelecimentoDAO {
     
     public boolean insert(EstabelecimentoModel object) throws SQLException, IOException {
         String SQL;
-        String PATH = "WEB-INF\\imagens\\estabelecimento";
+        String PATH = "http://localhost:8080/SizeApp/WebContent/imagens/estabelecimento/";
         SQL = "INSERT INTO public.estabelecimento\n"
                 + "(\n"
                 + "    nome, foto, endereco, coordenada\n"
